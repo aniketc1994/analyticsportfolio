@@ -4,11 +4,7 @@
 
 > End-to-end analytics across SQL, Python, Tableau, Power BI, and Looker Studio — built on real work, not toy datasets.
 
-🌐 **[View Live Portfolio →](https://aniketc1994.github.io/analyticsportfolio){:target="_blank"}**
-
-&nbsp;
-
-> **Note:** Click the portfolio link above to open in a new tab. On GitHub, you can also right-click → *Open in new tab*.
+🌐 <a href="https://aniketc1994.github.io/analyticsportfolio" target="_blank"><strong>View Live Portfolio →</strong></a>
 
 ---
 
@@ -63,9 +59,11 @@ Finance & HR reporting modernization, Patient-to-Payment analytics, and Tableau/
 
 ## Connect
 
-📧 aniketc1994@gmail.com
-💼 [linkedin.com/in/aniketc1994](https://linkedin.com/in/aniketc1994){:target="_blank"}
-🌐 [aniketc1994.github.io/analyticsportfolio](https://aniketc1994.github.io/analyticsportfolio){:target="_blank"}
+📧 <a href="mailto:aniketc1994@gmail.com" target="_blank">aniketc1994@gmail.com</a>
+
+💼 <a href="https://linkedin.com/in/aniketc1994" target="_blank">linkedin.com/in/aniketc1994</a>
+
+🌐 <a href="https://aniketc1994.github.io/analyticsportfolio" target="_blank">aniketc1994.github.io/analyticsportfolio</a>
 
 ---
 
