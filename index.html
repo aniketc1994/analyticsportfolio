@@ -37,31 +37,40 @@ nav {
   display: flex; align-items: center; justify-content: space-between;
 }
 .nav-logo {
-  font-family: 'DM Serif Display', serif; font-size: 17px; font-style: italic;
+  font-family: 'DM Serif Display', serif; font-size: 16px; font-style: italic;
   color: var(--accent); text-decoration: none;
+  display: flex; align-items: center; gap: 0;
+}
+.nav-logo-name { font-style: italic; }
+.nav-logo-sep {
+  font-style: normal; font-family: 'DM Sans', sans-serif;
+  color: var(--border-strong); margin: 0 10px; font-size: 14px; font-weight: 300;
+}
+.nav-logo-tag {
+  font-style: italic; font-family: 'DM Serif Display', serif;
+  font-size: 16px; color: var(--muted);
 }
 .nav-links { display: flex; gap: 32px; list-style: none; }
 .nav-links a { font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s; }
 .nav-links a:hover { color: var(--text); }
 
 /* HERO */
-.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 56px; }
+.hero { min-height: auto; display: grid; grid-template-columns: 1fr 1fr; padding-top: 56px; }
 .hero-left {
-  padding: 80px 64px 80px 80px;
+  padding: 48px 64px 48px 0px;
   display: flex; flex-direction: column; justify-content: center;
   border-right: 1px solid var(--border); position: relative;
 }
 
 .hero-eyebrow {
-  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em;
+  font-family: 'DM Mono', monospace; font-size: 14px; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--accent2); margin-bottom: 24px;
-  position: relative; display: flex; align-items: center; gap: 10px;
+  position: relative; display: flex; align-items: center; gap: 12px;
   white-space: nowrap;
 }
-.hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent2); flex-shrink: 0; }
-h1 { font-family: 'DM Serif Display', serif; font-size: clamp(42px, 5vw, 72px); line-height: 1.05; color: var(--ink); margin-bottom: 32px; position: relative; }
+.hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent2); flex-shrink: 0; }h1 { font-family: 'DM Serif Display', serif; font-size: clamp(42px, 5vw, 72px); line-height: 1.05; color: var(--ink); margin-bottom: 32px; position: relative; }
 h1 em { font-style: italic; color: var(--accent2); }
-.hero-desc { font-size: 16px; color: var(--dim); max-width: 440px; line-height: 1.75; margin-bottom: 48px; position: relative; }
+.hero-desc { font-size: 17px; color: var(--dim); max-width: 100%; line-height: 1.75; margin-bottom: 48px; position: relative; }
 .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; position: relative; }
 
 .btn-primary {
@@ -95,30 +104,41 @@ h1 em { font-style: italic; color: var(--accent2); }
 .btn-outline:hover { border-color: var(--accent); background: var(--paper2); }
 
 /* HERO RIGHT */
-.hero-right { padding: 64px 56px; display: flex; flex-direction: column; justify-content: center; background: none; }
+.hero-right { padding: 80px 56px 48px; display: flex; flex-direction: column; justify-content: flex-start; background: none; }
 .metrics-title {
-  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--muted); margin-bottom: 12px;
+  font-family: 'DM Mono', monospace; font-size: 14px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent2); margin-bottom: 12px;
   display: flex; align-items: center; gap: 10px;
 }
-.metrics-title::before { content: ''; width: 20px; height: 1px; background: var(--muted); }
+.metrics-title::before { content: ''; width: 24px; height: 1px; background: var(--accent2); }
 .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 0; }
-.metric-box { background: var(--paper); padding: 22px 20px; border: 1px solid var(--border); }
-.metric-value { font-family: 'DM Serif Display', serif; font-size: 34px; line-height: 1; color: var(--ink); margin-bottom: 4px; }
-.metric-label { font-size: 11px; color: var(--muted); line-height: 1.4; font-family: 'DM Mono', monospace; letter-spacing: 0.02em; }
+.metric-box {
+  background: var(--paper); padding: 36px 24px; border: 1px solid var(--border);
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 160px;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  cursor: default;
+}
+.metric-box:hover {
+  background: var(--paper3);
+  border-color: var(--border-strong);
+  transform: translateY(-3px);
+}
+.metric-value { font-family: 'DM Serif Display', serif; font-size: 38px; line-height: 1; color: var(--ink); margin-bottom: 12px; }
+.metric-label { font-size: 14px; color: var(--muted); line-height: 1.5; font-family: 'DM Mono', monospace; letter-spacing: 0.02em; }
 .stack-row { display: flex; flex-wrap: wrap; gap: 8px; }
 .stack-tag { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.04em; padding: 5px 12px; border: 1px solid var(--border-strong); color: var(--dim); background: var(--paper); }
 
 /* SECTION COMMON */
-section { padding: 100px 80px; }
+section { padding: 64px 80px; }
 .section-label {
-  font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em;
+  font-family: 'DM Mono', monospace; font-size: 14px; letter-spacing: 0.18em;
   text-transform: uppercase; color: var(--accent2); margin-bottom: 16px;
   display: flex; align-items: center; gap: 12px;
 }
 .section-label::before { content: ''; width: 24px; height: 1px; background: var(--accent2); }
 h2 { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 3.5vw, 44px); line-height: 1.1; color: var(--ink); margin-bottom: 16px; }
-.section-intro { font-size: 16px; color: var(--muted); max-width: 560px; line-height: 1.75; margin-bottom: 56px; }
+.section-intro { font-size: 17px; color: var(--muted); max-width: 100%; line-height: 1.75; margin-bottom: 48px; }
 
 /* ACCORDION */
 #projects { background: var(--paper); border-top: 1px solid var(--border); }
@@ -231,28 +251,32 @@ h2 { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 3.5vw, 44px)
 /* Timeline */
 .timeline { position: relative; padding-left: 32px; }
 .timeline::before {
-  content: ''; position: absolute; left: 4px; top: 10px; bottom: 10px;
-  width: 1px; background: rgba(255,255,255,0.12);
+  content: ''; position: absolute; left: 4px; top: 0; bottom: 0;
+  width: 1px; background: rgba(255,255,255,0.18);
 }
-.tl-item { position: relative; padding-bottom: 40px; }
+.tl-item { position: relative; padding-bottom: 44px; }
 .tl-item:last-child { padding-bottom: 0; }
 .tl-dot {
-  position: absolute; left: -35px; top: 7px;
-  width: 11px; height: 11px; border-radius: 50%;
+  position: absolute;
+  left: -34px;
+  top: 35px;
+  width: 12px; height: 12px; border-radius: 50%;
   background: var(--gold-light); border: 2px solid var(--accent);
-  box-shadow: 0 0 0 3px rgba(240,208,96,0.18);
+  box-shadow: 0 0 0 3px rgba(240,208,96,0.25);
 }
-.tl-item:last-child .tl-dot { background: rgba(255,255,255,0.2); box-shadow: none; }
-.tl-period { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(245,242,235,0.35); margin-bottom: 5px; }
+.tl-item:hover .tl-dot {
+  box-shadow: 0 0 0 5px rgba(240,208,96,0.2);
+}
+.tl-period { font-family: 'DM Mono', monospace; font-size: 15px; letter-spacing: 0.1em; color: rgba(245,242,235,0.75); margin-bottom: 5px; font-weight: 500; }
 .tl-role { font-size: 15px; font-weight: 500; color: #f5f2eb; margin-bottom: 2px; }
-.tl-company { font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(245,242,235,0.45); letter-spacing: 0.05em; margin-bottom: 6px; }
-.tl-note { font-size: 13px; color: rgba(245,242,235,0.5); line-height: 1.6; }
+.tl-company { font-family: 'DM Mono', monospace; font-size: 15px; color: rgba(245,242,235,0.45); letter-spacing: 0.05em; margin-bottom: 6px; }
+.tl-note { font-size: 15px; color: rgba(245,242,235,0.5); line-height: 1.6; }
 
 /* Skills compact */
 .skills-compact { display: flex; flex-direction: column; gap: 22px; }
-.sk-group-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,242,235,0.3); margin-bottom: 8px; }
+.sk-group-label { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,242,235,0.45); margin-bottom: 8px; }
 .sk-pills { display: flex; flex-wrap: wrap; gap: 6px; }
-.sk-pill { font-size: 12px; padding: 4px 11px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); color: rgba(245,242,235,0.75); }
+.sk-pill { font-size: 15px; padding: 5px 13px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); color: rgba(245,242,235,0.75); }
 .sk-pill.hi { background: rgba(240,208,96,0.1); border-color: rgba(240,208,96,0.22); color: var(--gold-light); }
 
 /* APPROACH */
@@ -288,17 +312,11 @@ h2 { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 3.5vw, 44px)
 .contact-link-value { font-size: 13px; font-weight: 500; color: var(--text); }
 
 .contact-manifesto {
-  font-family: 'DM Serif Display', serif; font-size: 22px; font-style: italic;
-  color: var(--dim); line-height: 1.55; margin-bottom: 28px;
+  font-family: 'DM Serif Display', serif; font-size: clamp(28px, 3.5vw, 44px); font-style: italic;
+  color: var(--dim); line-height: 1.35; margin-bottom: 28px;
   border-left: 2px solid var(--border-strong); padding-left: 20px;
 }
 .contact-note { font-size: 14px; color: var(--muted); line-height: 1.8; }
-.contact-availability {
-  display: flex; align-items: center; gap: 10px; margin-top: 32px;
-  font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.06em;
-}
-.avail-dot { width: 8px; height: 8px; border-radius: 50%; background: #4a9e6a; flex-shrink: 0; animation: pulse 2.5s ease infinite; }
-@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
 
 /* FOOTER */
 footer {
@@ -335,10 +353,14 @@ footer span { color: rgba(245,242,235,0.5); }
 
 <!-- NAV -->
 <nav>
-  <a href="#home" class="nav-logo">Aniket Chavan</a>
+  <a href="#home" class="nav-logo">
+    <span class="nav-logo-name">Aniket Chavan</span>
+    <span class="nav-logo-sep">·</span>
+    <span class="nav-logo-tag">San Francisco &nbsp;·&nbsp; Seattle &nbsp;·&nbsp; Remote</span>
+  </a>
   <ul class="nav-links">
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#about">Experience</a></li>
+    <li><a href="#projects">Career Highlights</a></li>
+    <li><a href="#about">Work Experience</a></li>
     <li><a href="#approach">Approach</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -368,7 +390,7 @@ footer span { color: rgba(245,242,235,0.5); }
 
 <!-- PROJECTS -->
 <section id="projects">
-  <p class="section-label">Case Studies</p>
+  <p class="section-label">Career Highlights</p>
   <h2>Analytics that moved the needle.</h2>
   <p class="section-intro">Each project below is built from real analytical work in U.S. FinTech lending and operations. Every number is actual impact delivered.</p>
 
@@ -577,7 +599,7 @@ footer span { color: rgba(245,242,235,0.5); }
 
 <!-- ABOUT -->
 <section id="about">
-  <p class="section-label">Background</p>
+  <p class="section-label">Work Experience</p>
   <h2><span class="js-exp-years">8</span> years. Three industries. One discipline.</h2>
   <p class="section-intro">Senior analytics practitioner with deep roots in FinTech lending, collections, and workforce operations — and a track record of turning messy data into decisions that stick.</p>
 
@@ -682,6 +704,10 @@ footer span { color: rgba(245,242,235,0.5); }
         <div class="contact-link-icon">⌥</div>
         <div><div class="contact-link-label">GitHub</div><div class="contact-link-value">github.com/aniketc1994</div></div>
       </a>
+      <a href="YOUR_RESUME_LINK_HERE" target="_blank" class="contact-link fade-up">
+        <div class="contact-link-icon">↓</div>
+        <div><div class="contact-link-label">Résumé</div><div class="contact-link-value">Download PDF</div></div>
+      </a>
     </div>
   </div>
   <div class="contact-right">
@@ -689,17 +715,13 @@ footer span { color: rgba(245,242,235,0.5); }
       If the work is interesting and the analytics problem is real, I'm always open to a conversation.
     </div>
     <p class="contact-note">Whether you're building something from scratch, rethinking how your team uses data, or just want a second pair of eyes on a thorny BI problem — reach out. Good analytics conversations are always worth having.</p>
-    <div class="contact-availability">
-      <div class="avail-dot"></div>
-      Based in San Francisco · Open to hybrid & remote
-    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <span>Aniket Chavan · Analytics Portfolio</span>
-  <span>San Francisco, CA · 2025</span>
+  <span>© 2025</span>
 </footer>
 
 <script>
@@ -707,7 +729,7 @@ footer span { color: rgba(245,242,235,0.5); }
 (function() {
   const anchor = new Date('2022-06-06');
   const now = new Date();
-  const dynamicYears = Math.floor((now - anchor) / (1000 * 60 * 60 * 24 * 365.25));
+  const dynamicYears = Math.ceil((now - anchor) / (1000 * 60 * 60 * 24 * 365.25));
   const total = 4 + dynamicYears;
   document.querySelectorAll('.js-exp-years').forEach(el => el.textContent = total);
 })();
