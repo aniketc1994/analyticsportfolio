@@ -1,10 +1,14 @@
 # Aniket Chavan — Analytics Portfolio
 
-**Senior Analytics Manager** · 7+ Years · FinTech, CPG & Healthcare
+**Senior Analytics Manager** · 8 Years · FinTech, CPG & Healthcare
 
 > End-to-end analytics across SQL, Python, Tableau, Power BI, and Looker Studio — built on real work, not toy datasets.
 
-🌐 **[View Live Portfolio →](https://aniketc1994.github.io/analyticsportfolio)**
+🌐 **[View Live Portfolio →](https://aniketc1994.github.io/analyticsportfolio){:target="_blank"}**
+
+&nbsp;
+
+> **Note:** Click the portfolio link above to open in a new tab. On GitHub, you can also right-click → *Open in new tab*.
 
 ---
 
@@ -19,7 +23,7 @@
 
 ---
 
-## Case Studies
+## Career Highlights
 
 | # | Project | Domain | Impact |
 |---|---|---|---|
@@ -29,6 +33,19 @@
 | 04 | DSC Retention via Agent Gamification | Customer & Speech Analytics | $3.6M recovered balances |
 | 05 | WFM ML Model — 30 FTE Reduction | Workforce Analytics · ML | $1.4M annualized savings |
 | 06 | Complaint Analytics Dashboard | Compliance Analytics | 40% of complaints traced to 3 fixable issues |
+
+---
+
+## Work Experience
+
+**Senior Manager** — EXL Analytics · FinTech · Gurgaon → San Francisco *(June 2022 – Present)*
+Operations, workforce & performance analytics for a U.S. fintech lending client. AI implementation across WFM, call reduction, and collections. Game Changer Award · Pioneer Award.
+
+**Consultant** — Fractal Analytics · CPG · Mumbai *(May 2019 – May 2020)*
+Power BI reporting, demand & shipment analytics, and go-to-market performance tracking for Fortune 500 CPG clients.
+
+**Software Engineer** — CitiusTech · Healthcare · Mumbai *(June 2016 – May 2019)*
+Finance & HR reporting modernization, Patient-to-Payment analytics, and Tableau/Power BI dashboard optimization.
 
 ---
 
@@ -44,24 +61,11 @@
 
 ---
 
-## Experience
-
-**Senior Manager** — EXL Analytics · FinTech · Gurgaon → San Francisco *(June 2022 – Present)*
-Operations, workforce & performance analytics for a U.S. fintech lending client. AI implementation across WFM, call reduction, and collections. Game Changer Award · Pioneer Award.
-
-**Consultant** — Fractal Analytics · CPG · Mumbai *(May 2019 – May 2020)*
-Power BI reporting, demand & shipment analytics, and go-to-market performance tracking for Fortune 500 CPG clients.
-
-**Software Engineer** — CitiusTech · Healthcare · Mumbai *(June 2016 – May 2019)*
-Finance & HR reporting modernization, Patient-to-Payment analytics, and Tableau/Power BI dashboard optimization.
-
----
-
 ## Connect
 
 📧 aniketc1994@gmail.com
-
-💼 [linkedin.com/in/aniketc1994](https://linkedin.com/in/aniketc1994)
+💼 [linkedin.com/in/aniketc1994](https://linkedin.com/in/aniketc1994){:target="_blank"}
+🌐 [aniketc1994.github.io/analyticsportfolio](https://aniketc1994.github.io/analyticsportfolio){:target="_blank"}
 
 ---
 
