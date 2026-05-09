@@ -4,7 +4,7 @@
 
 > End-to-end analytics across SQL, Python, Tableau, Power BI, and Looker Studio — built on real work, not toy datasets.
 
-🌐 **[View Live Portfolio →](https://aniketc1994.github.io/analytics-portfolio)**
+🌐 **[View Live Portfolio →](https://aniketc1994.github.io/analyticsportfolio)**
 
 ---
 
