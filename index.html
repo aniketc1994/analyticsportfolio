@@ -4,327 +4,270 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aniket Chavan — Analytics Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ink: #0e0f0d;
-  --paper: #f5f2eb;
-  --paper2: #ede9df;
-  --paper3: #e4dfd2;
-  --text: #1a1c18;
-  --muted: #6b6960;
-  --dim: #4a4840;
-  --accent: #1a3a2a;
-  --accent2: #2d5a3f;
-  --gold-light: #f0d060;
-  --border: rgba(26,28,24,0.12);
-  --border-strong: rgba(26,28,24,0.25);
-  --tag-sql-bg: #dde8f5; --tag-sql-t: #1e4d7b;
-  --tag-py-bg: #ede0f5;  --tag-py-t: #4a1c7a;
-  --tag-tab-bg: #f5e0d0; --tag-tab-t: #c04a00;
-  --tag-fin-bg: #e8e0d5; --tag-fin-t: #3a2e20;
+  --apple-blue: #0071e3;
+  --apple-blue-hover: #0077ed;
+  --apple-blue-light: #e8f0fe;
+  --apple-text: #1d1d1f;
+  --apple-secondary: #6e6e73;
+  --apple-tertiary: #98989d;
+  --apple-bg: #ffffff;
+  --apple-bg2: #f5f5f7;
+  --apple-bg3: #ebebeb;
+  --apple-border: #d2d2d7;
+  --apple-border-light: #e8e8ed;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--text); line-height: 1.65; overflow-x: hidden; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--apple-bg); color: var(--apple-text); line-height: 1.65; -webkit-font-smoothing: antialiased; }
 
 /* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(245,242,235,0.93); backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 48px; height: 56px;
+  background: rgba(255,255,255,0.85); backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 0.5px solid var(--apple-border-light);
+  padding: 0 48px; height: 52px;
   display: flex; align-items: center; justify-content: space-between;
 }
 .nav-logo {
-  font-family: 'DM Serif Display', serif; font-size: 16px; font-style: italic;
-  color: var(--accent); text-decoration: none;
-  display: flex; align-items: center; gap: 0;
+  font-size: 15px; font-weight: 600; color: var(--apple-text);
+  text-decoration: none; letter-spacing: -0.01em;
 }
-.nav-logo-name { font-style: italic; }
-.nav-logo-sep {
-  font-style: normal; font-family: 'DM Sans', sans-serif;
-  color: var(--border-strong); margin: 0 10px; font-size: 14px; font-weight: 300;
-}
-.nav-logo-tag {
-  font-style: italic; font-family: 'DM Serif Display', serif;
-  font-size: 16px; color: var(--muted);
-}
-.nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a { font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s; }
-.nav-links a:hover { color: var(--text); }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { font-size: 12px; font-weight: 400; color: var(--apple-secondary); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--apple-text); }
 
 /* HERO */
-.hero { min-height: auto; display: grid; grid-template-columns: 1fr 1fr; padding-top: 56px; }
-.hero-left {
-  padding: 48px 64px 48px 0px;
-  display: flex; flex-direction: column; justify-content: center;
-  border-right: 1px solid var(--border); position: relative;
-}
-
+.hero { padding-top: 52px; background: var(--apple-bg); border-bottom: 0.5px solid var(--apple-border-light); }
+.hero-inner { padding: 64px 0 0 48px; }
 .hero-eyebrow {
-  font-family: 'DM Mono', monospace; font-size: 14px; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--accent2); margin-bottom: 24px;
-  position: relative; display: flex; align-items: center; gap: 12px;
-  white-space: nowrap;
+  font-size: 13px; font-weight: 500; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--apple-blue); margin-bottom: 16px;
 }
-.hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent2); flex-shrink: 0; }h1 { font-family: 'DM Serif Display', serif; font-size: clamp(42px, 5vw, 72px); line-height: 1.05; color: var(--ink); margin-bottom: 32px; position: relative; }
-h1 em { font-style: italic; color: var(--accent2); }
-.hero-desc { font-size: 17px; color: var(--dim); max-width: 100%; line-height: 1.75; margin-bottom: 48px; position: relative; }
-.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; position: relative; }
-
+h1 {
+  font-family: 'Inter', sans-serif; font-size: clamp(40px, 5vw, 64px);
+  font-weight: 700; line-height: 1.05; color: var(--apple-text);
+  letter-spacing: -0.03em; margin-bottom: 16px;
+}
+h1 em { font-style: italic; color: var(--apple-blue); font-family: 'DM Serif Display', serif; }
+.hero-desc {
+  font-size: 16px; color: var(--apple-secondary); max-width: 100%;
+  line-height: 1.75; margin-bottom: 28px; font-weight: 400;
+}
+.section-intro { font-size: 16px; color: var(--apple-secondary); max-width: 100%; line-height: 1.75; margin-bottom: 48px; }
+.hero-ctas { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 48px; }
 .btn-primary {
-  background: var(--accent); color: #f5f2eb; padding: 13px 28px;
+  background: var(--apple-blue); color: #fff; padding: 10px 22px;
   font-size: 14px; font-weight: 500; border: none; cursor: pointer;
-  text-decoration: none; display: inline-block; letter-spacing: 0.02em;
-  transition: background 0.2s, transform 0.15s; position: relative;
+  text-decoration: none; display: inline-block;
+  border-radius: 980px; transition: background 0.2s, transform 0.15s;
+  position: relative;
 }
-.btn-primary::after {
-  content: attr(data-hover); position: absolute; bottom: calc(100% + 10px); left: 50%;
-  transform: translateX(-50%) translateY(4px); background: var(--ink);
-  color: var(--gold-light); font-family: 'DM Mono', monospace; font-size: 11px;
-  letter-spacing: 0.05em; padding: 6px 14px; white-space: nowrap;
-  opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 10;
-}
-.btn-primary::before {
-  content: ''; position: absolute; bottom: calc(100% + 4px); left: 50%;
-  transform: translateX(-50%) translateY(4px); border: 5px solid transparent;
-  border-top-color: var(--ink); opacity: 0; pointer-events: none;
-  transition: opacity 0.2s, transform 0.2s; z-index: 10;
-}
-.btn-primary:hover::after, .btn-primary:hover::before { opacity: 1; transform: translateX(-50%) translateY(0); }
-.btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
-
+.btn-primary:hover { background: var(--apple-blue-hover); transform: translateY(-1px); }
 .btn-outline {
-  border: 1.5px solid var(--border-strong); color: var(--text); padding: 12px 28px;
+  border: 1px solid var(--apple-blue); color: var(--apple-blue); padding: 10px 22px;
   font-size: 14px; font-weight: 500; background: transparent; cursor: pointer;
-  text-decoration: none; display: inline-block; letter-spacing: 0.02em;
-  transition: border-color 0.2s, background 0.2s;
+  text-decoration: none; display: inline-block; border-radius: 980px;
+  transition: background 0.2s;
 }
-.btn-outline:hover { border-color: var(--accent); background: var(--paper2); }
+.btn-outline:hover { background: var(--apple-blue-light); }
 
-/* HERO RIGHT */
-.hero-right { padding: 80px 56px 48px; display: flex; flex-direction: column; justify-content: flex-start; background: none; }
-.metrics-title {
-  font-family: 'DM Mono', monospace; font-size: 14px; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--accent2); margin-bottom: 12px;
-  display: flex; align-items: center; gap: 10px;
+/* METRICS STRIP */
+.metrics-strip {
+  border-top: 0.5px solid var(--apple-border-light);
+  display: grid; grid-template-columns: repeat(4, 1fr);
 }
-.metrics-title::before { content: ''; width: 24px; height: 1px; background: var(--accent2); }
-.metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 0; }
-.metric-box {
-  background: var(--paper); padding: 36px 24px; border: 1px solid var(--border);
-  display: flex; flex-direction: column; justify-content: space-between;
-  min-height: 160px;
-  transition: background 0.2s, border-color 0.2s, transform 0.2s;
-  cursor: default;
+.metric-cell {
+  padding: 24px 28px; border-right: 0.5px solid var(--apple-border-light);
+  transition: background 0.2s; cursor: default;
 }
-.metric-box:hover {
-  background: var(--paper3);
-  border-color: var(--border-strong);
-  transform: translateY(-3px);
+.metric-cell:last-child { border-right: none; }
+.metric-cell:hover { background: var(--apple-bg2); }
+.metric-num {
+  font-size: 32px; font-weight: 700; color: var(--apple-text);
+  letter-spacing: -0.03em; line-height: 1; margin-bottom: 6px;
 }
-.metric-value { font-family: 'DM Serif Display', serif; font-size: 38px; line-height: 1; color: var(--ink); margin-bottom: 12px; }
-.metric-label { font-size: 14px; color: var(--muted); line-height: 1.5; font-family: 'DM Mono', monospace; letter-spacing: 0.02em; }
-.stack-row { display: flex; flex-wrap: wrap; gap: 8px; }
-.stack-tag { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.04em; padding: 5px 12px; border: 1px solid var(--border-strong); color: var(--dim); background: var(--paper); }
+.metric-desc { font-size: 12px; color: var(--apple-secondary); line-height: 1.5; }
+.metric-cell:hover .metric-num { color: var(--apple-blue); }
 
-/* SECTION COMMON */
-section { padding: 64px 80px; }
-.section-label {
-  font-family: 'DM Mono', monospace; font-size: 14px; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--accent2); margin-bottom: 16px;
+/* SECTIONS */
+section { padding: 72px 0 72px 48px; }
+.section-intro { font-size: 16px; color: var(--apple-secondary); max-width: none; line-height: 1.75; margin-bottom: 48px; }
+.section-eyebrow {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--apple-blue); margin-bottom: 10px;
+}
+h2 {
+  font-family: 'Inter', sans-serif; font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 700; line-height: 1.08; color: var(--apple-text);
+  letter-spacing: -0.025em; margin-bottom: 12px;
+}
+h2 em { font-style: italic; color: var(--apple-blue); font-family: 'DM Serif Display', serif; }
+
+/* CAREER HIGHLIGHTS — rounded cards */
+#projects { background: var(--apple-bg2); border-top: 0.5px solid var(--apple-border-light); }
+.highlights-list { display: flex; flex-direction: column; gap: 10px; }
+.highlight-card {
+  background: var(--apple-bg); border-radius: 12px;
+  border: 0.5px solid var(--apple-border-light);
+  overflow: hidden; transition: box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+.highlight-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.highlight-header {
+  display: grid; grid-template-columns: 52px 1fr auto auto;
+  align-items: stretch;
+}
+.hl-num {
+  font-size: 11px; font-weight: 600; color: var(--apple-blue);
+  display: flex; align-items: center; justify-content: center;
+  border-right: 0.5px solid var(--apple-border-light); padding: 20px 0;
+  background: var(--apple-bg2);
+}
+.hl-title-block { padding: 18px 20px; }
+.hl-domain {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--apple-tertiary); margin-bottom: 4px;
+}
+.hl-title { font-size: 16px; font-weight: 600; color: var(--apple-text); line-height: 1.3; }
+.hl-wip {
+  font-size: 10px; font-weight: 500; padding: 4px 12px;
+  background: var(--apple-bg2); border: 0.5px solid var(--apple-border);
+  color: var(--apple-tertiary); align-self: center; margin: 0 12px;
+  border-radius: 980px; white-space: nowrap; position: relative; cursor: default;
+}
+.hl-wip::after {
+  content: 'Coming Soon'; position: absolute; bottom: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--apple-text); color: #fff;
+  font-size: 10px; padding: 4px 10px; border-radius: 6px; white-space: nowrap;
+  opacity: 0; pointer-events: none; transition: opacity 0.18s, transform 0.18s;
+}
+.hl-wip:hover::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+.hl-toggle {
+  width: 48px; border-left: 0.5px solid var(--apple-border-light);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--apple-blue); font-size: 18px; transition: color 0.2s;
+}
+.hl-arrow { display: inline-block; transition: transform 0.3s ease; }
+.highlight-card.open .hl-arrow { transform: rotate(180deg); }
+
+.highlight-body {
+  display: none; border-top: 0.5px solid var(--apple-border-light);
+  padding: 24px 24px 0 76px; background: var(--apple-bg);
+}
+.highlight-card.open .highlight-body { display: block; }
+.hl-body-grid { display: grid; grid-template-columns: 1fr 180px; gap: 32px; align-items: start; padding-bottom: 24px; }
+.hl-desc { font-size: 14px; color: var(--apple-secondary); line-height: 1.75; margin-bottom: 16px; }
+.hl-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.hl-tag {
+  font-size: 11px; font-weight: 500; padding: 4px 11px;
+  background: var(--apple-blue-light); color: var(--apple-blue); border-radius: 980px;
+}
+.hl-result-panel {
+  background: var(--apple-bg2); border-radius: 10px;
+  border: 0.5px solid var(--apple-border-light); padding: 20px;
+}
+.hl-figure { font-size: 32px; font-weight: 700; color: var(--apple-blue); line-height: 1; letter-spacing: -0.02em; margin-bottom: 8px; }
+.hl-result-label { font-size: 11px; color: var(--apple-secondary); line-height: 1.5; }
+.hl-companion {
+  margin: 0 -24px 0 -76px; padding: 12px 24px 12px 76px;
+  border-top: 0.5px solid var(--apple-border-light);
+  background: var(--apple-bg2);
   display: flex; align-items: center; gap: 12px;
 }
-.section-label::before { content: ''; width: 24px; height: 1px; background: var(--accent2); }
-h2 { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 3.5vw, 44px); line-height: 1.1; color: var(--ink); margin-bottom: 16px; }
-.section-intro { font-size: 17px; color: var(--muted); max-width: 100%; line-height: 1.75; margin-bottom: 48px; }
-
-/* ACCORDION */
-#projects { background: var(--paper); border-top: 1px solid var(--border); }
-.accordion-list { display: flex; flex-direction: column; }
-.accordion-item { border: 1px solid var(--border); border-bottom: none; background: var(--paper2); }
-.accordion-item:last-child { border-bottom: 1px solid var(--border); }
-
-.accordion-header {
-  display: grid;
-  grid-template-columns: 56px 1fr auto auto;
-  align-items: stretch;
-  cursor: pointer;
-  transition: background 0.18s;
-  user-select: none;
-}
-.accordion-header:hover { background: var(--paper3); }
-
-.acc-num {
-  font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted);
-  display: flex; align-items: center; justify-content: center;
-  border-right: 1px solid var(--border); padding: 20px 0;
-}
-.acc-title-block { padding: 20px 24px; }
-.acc-domain {
-  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--muted); margin-bottom: 5px;
-}
-.acc-title { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--ink); line-height: 1.25; }
-
-.acc-wip {
-  font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em;
-  text-transform: uppercase; padding: 5px 11px;
-  background: var(--paper3); border: 1px dashed var(--border-strong);
-  color: var(--muted); align-self: center; margin: 0 12px; white-space: nowrap;
+.hl-companion-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--apple-tertiary); }
+.hl-companion-skill { font-size: 13px; color: var(--apple-secondary); font-style: italic; font-family: 'DM Serif Display', serif; }
+.hl-companion-badge {
+  font-size: 10px; font-weight: 500; padding: 3px 10px;
+  background: var(--apple-bg); border: 0.5px dashed var(--apple-border);
+  color: var(--apple-tertiary); border-radius: 980px; margin-left: auto;
   position: relative; cursor: default;
 }
-.accordion-header:hover .acc-wip { background: var(--paper); }
-.acc-wip::after, .acc-companion-badge::after {
-  content: 'Coming Soon';
-  position: absolute; bottom: calc(100% + 8px); left: 50%;
+.hl-companion-badge::after {
+  content: 'Coming Soon'; position: absolute; bottom: calc(100% + 8px); left: 50%;
   transform: translateX(-50%) translateY(4px);
-  background: var(--ink); color: var(--gold-light);
-  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em;
-  padding: 5px 12px; white-space: nowrap;
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.18s, transform 0.18s;
-  z-index: 20;
+  background: var(--apple-text); color: #fff;
+  font-size: 10px; padding: 4px 10px; border-radius: 6px; white-space: nowrap;
+  opacity: 0; pointer-events: none; transition: opacity 0.18s, transform 0.18s;
 }
-.acc-wip:hover::after, .acc-companion-badge:hover::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+.hl-companion-badge:hover::after { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-.acc-toggle {
-  width: 52px; border-left: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--muted); transition: color 0.2s, background 0.2s;
-}
-.accordion-header:hover .acc-toggle { color: var(--accent2); }
-.acc-arrow { display: inline-block; transition: transform 0.3s ease; font-size: 16px; }
-.accordion-item.open .acc-arrow { transform: rotate(180deg); }
-
-.accordion-body {
-  display: none; border-top: 1px solid var(--border);
-  padding: 32px 32px 0 80px; background: var(--paper);
-}
-.accordion-item.open .accordion-body { display: block; }
-
-.acc-body-grid { display: grid; grid-template-columns: 1fr 190px; gap: 36px; align-items: start; padding-bottom: 32px; }
-.acc-desc { font-size: 14px; color: var(--dim); line-height: 1.75; margin-bottom: 18px; }
-.acc-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-.tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em; padding: 4px 10px; font-weight: 500; }
-.t-sql { background: var(--tag-sql-bg); color: var(--tag-sql-t); }
-.t-py  { background: var(--tag-py-bg);  color: var(--tag-py-t); }
-.t-tab { background: var(--tag-tab-bg); color: var(--tag-tab-t); }
-.t-fin { background: var(--tag-fin-bg); color: var(--tag-fin-t); }
-
-.acc-result-panel { background: var(--paper2); border: 1px solid var(--border); padding: 22px 20px; }
-.acc-figure { font-family: 'DM Serif Display', serif; font-size: 34px; color: var(--accent2); line-height: 1; margin-bottom: 8px; }
-.acc-result-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); line-height: 1.5; }
-
-.acc-companion-strip {
-  margin: 0 -32px 0 -80px;
-  padding: 14px 32px 14px 80px;
-  border-top: 1px solid var(--border);
-  background: var(--paper3);
-  display: flex; align-items: center; gap: 14px;
-  position: relative; overflow: hidden;
-}
-.acc-companion-strip::before {
-  content: ''; position: absolute; inset: 0;
-  background: repeating-linear-gradient(-45deg,transparent,transparent 6px,rgba(26,28,24,0.025) 6px,rgba(26,28,24,0.025) 7px);
-}
-.acc-companion-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); position: relative; }
-.acc-sep { color: var(--border-strong); position: relative; }
-.acc-companion-skill { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 14px; color: var(--dim); position: relative; }
-.acc-companion-badge {
-  font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em;
-  padding: 3px 9px; background: var(--paper); border: 1px dashed var(--border-strong);
-  color: var(--muted); position: relative; margin-left: auto;
-  cursor: default;
-}
-
-/* ABOUT */
-#about { background: var(--accent); color: #f5f2eb; border-top: 1px solid rgba(255,255,255,0.08); }
-#about .section-label { color: var(--gold-light); }
-#about .section-label::before { background: var(--gold-light); }
-#about h2 { color: #f5f2eb; }
-#about .section-intro { color: rgba(245,242,235,0.6); margin-bottom: 48px; }
-
+/* WORK EXPERIENCE */
+#about { background: var(--apple-text); color: #fff; border-top: 0.5px solid #333; }
+#about .section-eyebrow { color: #6eb5ff; }
+#about h2 { color: #f5f5f7; }
+#about .section-intro { color: #98989d; }
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 
 /* Timeline */
-.timeline { position: relative; padding-left: 32px; }
-.timeline::before {
-  content: ''; position: absolute; left: 4px; top: 0; bottom: 0;
-  width: 1px; background: rgba(255,255,255,0.18);
-}
-.tl-item { position: relative; padding-bottom: 44px; }
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0.5px; background: rgba(255,255,255,0.15); }
+.tl-item { position: relative; padding-bottom: 40px; }
 .tl-item:last-child { padding-bottom: 0; }
 .tl-dot {
-  position: absolute;
-  left: -34px;
-  top: 35px;
-  width: 12px; height: 12px; border-radius: 50%;
-  background: var(--gold-light); border: 2px solid var(--accent);
-  box-shadow: 0 0 0 3px rgba(240,208,96,0.25);
+  position: absolute; left: -34px; top: 37px;
+  width: 11px; height: 11px; border-radius: 50%;
+  background: #6eb5ff; border: 2px solid var(--apple-text);
+  box-shadow: 0 0 0 3px rgba(110,181,255,0.25);
 }
-.tl-item:hover .tl-dot {
-  box-shadow: 0 0 0 5px rgba(240,208,96,0.2);
-}
-.tl-period { font-family: 'DM Mono', monospace; font-size: 15px; letter-spacing: 0.1em; color: rgba(245,242,235,0.75); margin-bottom: 5px; font-weight: 500; }
-.tl-role { font-size: 15px; font-weight: 500; color: #f5f2eb; margin-bottom: 2px; }
-.tl-company { font-family: 'DM Mono', monospace; font-size: 15px; color: rgba(245,242,235,0.45); letter-spacing: 0.05em; margin-bottom: 6px; }
-.tl-note { font-size: 15px; color: rgba(245,242,235,0.5); line-height: 1.6; }
+.tl-period { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.4); margin-bottom: 5px; letter-spacing: -0.01em; }
+.tl-role { font-size: 15px; font-weight: 600; color: #f5f5f7; margin-bottom: 3px; }
+.tl-company { font-size: 15px; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+.tl-note { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.65; }
 
-/* Skills compact */
-.skills-compact { display: flex; flex-direction: column; gap: 22px; }
-.sk-group-label { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,242,235,0.45); margin-bottom: 8px; }
-.sk-pills { display: flex; flex-wrap: wrap; gap: 6px; }
-.sk-pill { font-size: 15px; padding: 5px 13px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); color: rgba(245,242,235,0.75); }
-.sk-pill.hi { background: rgba(240,208,96,0.1); border-color: rgba(240,208,96,0.22); color: var(--gold-light); }
+/* Skills */
+.skills-compact { display: flex; flex-direction: column; gap: 24px; }
+.sk-group-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 10px; }
+.sk-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+.sk-pill { font-size: 13px; font-weight: 400; padding: 5px 13px; background: rgba(255,255,255,0.08); border: 0.5px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.75); border-radius: 980px; }
+.sk-pill.hi { background: rgba(110,181,255,0.12); border-color: rgba(110,181,255,0.25); color: #6eb5ff; }
 
 /* APPROACH */
-#approach { background: var(--paper2); border-top: 1px solid var(--border); padding: 80px 80px 90px; }
-#approach .section-intro { margin-bottom: 40px; font-size: 15px; }
-.approach-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+#approach { background: var(--apple-bg2); border-top: 0.5px solid var(--apple-border-light); padding: 72px 0 72px 48px; }
+.approach-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 0; }
 .approach-card {
-  background: var(--paper); border: 1px solid var(--border); padding: 30px 28px 34px;
-  position: relative;
+  background: var(--apple-bg); border-radius: 12px;
+  border: 0.5px solid var(--apple-border-light); padding: 28px 24px;
+  transition: box-shadow 0.2s, transform 0.2s;
 }
-.approach-card::after {
-  content: attr(data-n);
-  position: absolute; top: 22px; right: 22px;
-  font-family: 'DM Mono', monospace; font-size: 10px; color: var(--border-strong); letter-spacing: 0.1em;
-}
-.approach-icon { font-size: 20px; color: var(--accent2); margin-bottom: 16px; opacity: 0.7; }
-.approach-card h3 { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--ink); font-weight: 400; margin-bottom: 10px; line-height: 1.35; padding-right: 20px; }
-.approach-card p { font-size: 13px; color: var(--muted); line-height: 1.72; }
+.approach-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); transform: translateY(-2px); }
+.approach-icon { font-size: 22px; color: var(--apple-blue); margin-bottom: 14px; opacity: 0.8; }
+.approach-card h3 { font-size: 15px; font-weight: 600; color: var(--apple-text); margin-bottom: 10px; letter-spacing: -0.01em; }
+.approach-card p { font-size: 13px; color: var(--apple-secondary); line-height: 1.72; }
 
 /* CONTACT */
-#contact { background: var(--paper); border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; padding: 0; }
-.contact-left { padding: 100px 80px; border-right: 1px solid var(--border); }
-.contact-right { padding: 100px 80px; background: var(--paper2); display: flex; flex-direction: column; justify-content: center; }
-.contact-links { display: flex; flex-direction: column; gap: 14px; margin-top: 48px; }
+#contact { background: var(--apple-bg); border-top: 0.5px solid var(--apple-border-light); display: grid; grid-template-columns: 1fr 1fr; padding: 0; }
+.contact-left { padding: 80px; border-right: 0.5px solid var(--apple-border-light); }
+.contact-right { padding: 80px; background: var(--apple-bg2); display: flex; flex-direction: column; justify-content: center; }
+.contact-links { display: flex; flex-direction: column; gap: 10px; margin-top: 40px; }
 .contact-link {
-  display: flex; align-items: center; gap: 16px; text-decoration: none;
-  color: var(--text); padding: 16px 20px; background: var(--paper2);
-  border: 1px solid var(--border); transition: border-color 0.2s, background 0.2s;
+  display: flex; align-items: center; gap: 14px; text-decoration: none;
+  color: var(--apple-text); padding: 14px 18px;
+  background: var(--apple-bg2); border: 0.5px solid var(--apple-border-light);
+  border-radius: 10px; transition: background 0.2s, border-color 0.2s, transform 0.15s;
 }
-.contact-link:hover { border-color: var(--accent); background: var(--paper3); }
-.contact-link-icon { font-size: 16px; color: var(--accent2); min-width: 20px; text-align: center; }
-.contact-link-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
-.contact-link-value { font-size: 13px; font-weight: 500; color: var(--text); }
-
+.contact-link:hover { background: var(--apple-blue-light); border-color: var(--apple-blue); transform: translateX(4px); }
+.contact-link:hover .contact-link-icon { color: var(--apple-blue); }
+.contact-link-icon { font-size: 16px; color: var(--apple-secondary); min-width: 20px; text-align: center; }
+.contact-link-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--apple-tertiary); margin-bottom: 2px; }
+.contact-link-value { font-size: 13px; font-weight: 500; color: var(--apple-text); }
 .contact-manifesto {
-  font-family: 'DM Serif Display', serif; font-size: clamp(28px, 3.5vw, 44px); font-style: italic;
-  color: var(--dim); line-height: 1.35; margin-bottom: 28px;
-  border-left: 2px solid var(--border-strong); padding-left: 20px;
+  font-family: 'DM Serif Display', serif; font-size: clamp(24px, 3vw, 36px);
+  font-style: italic; color: var(--apple-text); line-height: 1.35;
+  margin-bottom: 24px; letter-spacing: -0.01em;
 }
-.contact-note { font-size: 14px; color: var(--muted); line-height: 1.8; }
+.contact-note { font-size: 15px; color: var(--apple-secondary); line-height: 1.8; }
 
 /* FOOTER */
 footer {
-  background: var(--ink); color: rgba(245,242,235,0.35);
-  padding: 22px 48px; font-family: 'DM Mono', monospace; font-size: 11px;
-  letter-spacing: 0.12em; display: flex; align-items: center; justify-content: space-between;
+  background: var(--apple-bg2); color: var(--apple-tertiary);
+  padding: 20px 48px; font-size: 11px; letter-spacing: 0.06em;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 0.5px solid var(--apple-border-light);
 }
-footer span { color: rgba(245,242,235,0.5); }
 
 /* FADE */
 .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
@@ -333,19 +276,17 @@ footer span { color: rgba(245,242,235,0.5); }
 /* RESPONSIVE */
 @media (max-width: 900px) {
   nav { padding: 0 20px; }
-  .nav-links { gap: 20px; }
-  .hero { grid-template-columns: 1fr; }
-  .hero-left { padding: 60px 24px; border-right: none; border-bottom: 1px solid var(--border); }
-  .hero-right { padding: 48px 24px; }
-  section, #approach { padding: 64px 24px; }
+  .hero-inner { padding: 48px 24px 0; }
+  .metrics-strip { grid-template-columns: 1fr 1fr; }
+  section, #approach { padding: 56px 24px; }
   .about-grid, .approach-strip, #contact { grid-template-columns: 1fr; }
-  .contact-left { padding: 56px 24px; border-right: none; border-bottom: 1px solid var(--border); }
+  .contact-left { padding: 56px 24px; border-right: none; border-bottom: 0.5px solid var(--apple-border-light); }
   .contact-right { padding: 56px 24px; }
-  .acc-body-grid { grid-template-columns: 1fr; }
-  .acc-num { display: none; }
-  .accordion-header { grid-template-columns: 1fr auto auto; }
-  .accordion-body { padding: 28px 20px 0; }
-  .acc-companion-strip { margin: 0 -20px; padding: 14px 20px; }
+  .hl-body-grid { grid-template-columns: 1fr; }
+  .hl-num { display: none; }
+  .highlight-header { grid-template-columns: 1fr auto auto; }
+  .highlight-body { padding: 20px 16px 0; }
+  .hl-companion { margin: 0 -16px; padding: 12px 16px; }
 }
 </style>
 </head>
@@ -353,11 +294,7 @@ footer span { color: rgba(245,242,235,0.5); }
 
 <!-- NAV -->
 <nav>
-  <a href="#home" class="nav-logo">
-    <span class="nav-logo-name">Aniket Chavan</span>
-    <span class="nav-logo-sep">·</span>
-    <span class="nav-logo-tag">San Francisco &nbsp;·&nbsp; Seattle &nbsp;·&nbsp; Remote</span>
-  </a>
+  <a href="#home" class="nav-logo">Aniket Chavan <span style="font-weight:300;color:#b0b0b5;margin:0 6px;">·</span> <span style="font-weight:400;color:#6e6e73;">San Francisco · Seattle · Remote</span></a>
   <ul class="nav-links">
     <li><a href="#projects">Career Highlights</a></li>
     <li><a href="#about">Work Experience</a></li>
@@ -367,229 +304,232 @@ footer span { color: rgba(245,242,235,0.5); }
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-left">
+<div class="hero" id="home">
+  <div class="hero-inner">
     <p class="hero-eyebrow">Analytics Manager · <span class="js-exp-years">8</span> Years · FinTech, CPG & Healthcare</p>
     <h1>Data that <em>drives</em> decisions.</h1>
     <p class="hero-desc">I build end-to-end analytics systems — from SQL pipelines and predictive models to executive dashboards that actually change what leadership does next. Specializing in collections, workforce, and performance analytics for U.S. lending & banking.</p>
     <div class="hero-ctas">
-      <a href="#projects" class="btn-primary" data-hover="Case studies shipping soon ✦">View Projects</a>
+      <a href="#projects" class="btn-primary">View Projects</a>
       <a href="#contact" class="btn-outline">Get in Touch</a>
     </div>
   </div>
-  <div class="hero-right">
-    <p class="metrics-title">Career Impact</p>
-    <div class="metrics-grid">
-      <div class="metric-box"><div class="metric-value">$50M</div><div class="metric-label">Incremental balances recovered via collections analytics</div></div>
-      <div class="metric-box"><div class="metric-value">98%</div><div class="metric-label">Reduction in reporting prep time through Tableau automation</div></div>
-      <div class="metric-box"><div class="metric-value">$1.4M</div><div class="metric-label">Annualized savings from ML-powered workforce optimization</div></div>
-      <div class="metric-box"><div class="metric-value">100+</div><div class="metric-label">Dashboard users across executive & associate tiers</div></div>
+  <div class="metrics-strip">
+    <div class="metric-cell">
+      <div class="metric-num">$50M</div>
+      <div class="metric-desc">Incremental balances recovered via collections analytics</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-num">98%</div>
+      <div class="metric-desc">Reduction in reporting prep time through Tableau automation</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-num">$1.4M</div>
+      <div class="metric-desc">Annualized savings from ML-powered workforce optimization</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-num">100+</div>
+      <div class="metric-desc">Dashboard users across executive & associate tiers</div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- PROJECTS -->
+<!-- CAREER HIGHLIGHTS -->
 <section id="projects">
-  <p class="section-label">Career Highlights</p>
+  <p class="section-eyebrow">Career Highlights</p>
   <h2>Analytics that moved the needle.</h2>
   <p class="section-intro">Each project below is built from real analytical work in U.S. FinTech lending and operations. Every number is actual impact delivered.</p>
 
-  <div class="accordion-list fade-up">
+  <div class="highlights-list fade-up">
 
-    <div class="accordion-item" id="acc1">
-      <div class="accordion-header" onclick="toggleAcc('acc1')">
-        <div class="acc-num">01</div>
-        <div class="acc-title-block">
-          <div class="acc-domain">Collections Analytics · Root Cause Analysis</div>
-          <div class="acc-title">PTP Rate Decline: Decomposing 930 Basis Points</div>
+    <div class="highlight-card" id="acc1">
+      <div class="highlight-header" onclick="toggleAcc('acc1')">
+        <div class="hl-num">01</div>
+        <div class="hl-title-block">
+          <div class="hl-domain">Collections Analytics · Root Cause Analysis</div>
+          <div class="hl-title">PTP Rate Decline: Decomposing 930 Basis Points</div>
         </div>
-        <div class="acc-wip">EDA · In the lab</div>
-        <div class="acc-toggle"><span class="acc-arrow">↓</span></div>
+        <div class="hl-wip">EDA · In the lab</div>
+        <div class="hl-toggle"><span class="hl-arrow">↓</span></div>
       </div>
-      <div class="accordion-body">
-        <div class="acc-body-grid">
+      <div class="highlight-body">
+        <div class="hl-body-grid">
           <div>
-            <p class="acc-desc">When executive leadership suspected agent underperformance behind a 9.3pp drop in Promise-to-Pay rates, I built a waterfall decomposition across two years of data — isolating IVR automation (480 bps), hardship diversion (50 bps), portfolio strategy shifts (340 bps), and macro factors (70 bps). The analysis reframed a "performance problem" as strategic success.</p>
-            <div class="acc-tags">
-              <span class="tag t-sql">SQL</span><span class="tag t-py">Python</span><span class="tag t-tab">Tableau</span>
-              <span class="tag t-fin">Root Cause Analysis</span><span class="tag t-fin">Waterfall Chart</span><span class="tag t-fin">FinTech Collections</span>
+            <p class="hl-desc">When executive leadership suspected agent underperformance behind a 9.3pp drop in Promise-to-Pay rates, I built a waterfall decomposition across two years of data — isolating IVR automation (480 bps), hardship diversion (50 bps), portfolio strategy shifts (340 bps), and macro factors (70 bps). The analysis reframed a "performance problem" as strategic success.</p>
+            <div class="hl-tags">
+              <span class="hl-tag">SQL</span><span class="hl-tag">Python</span><span class="hl-tag">Tableau</span>
+              <span class="hl-tag">Root Cause Analysis</span><span class="hl-tag">Waterfall Chart</span><span class="hl-tag">FinTech Collections</span>
             </div>
           </div>
-          <div class="acc-result-panel">
-            <div class="acc-figure">930 bps</div>
-            <div class="acc-result-label">Decomposed across 3 distinct driver categories</div>
+          <div class="hl-result-panel">
+            <div class="hl-figure">930 bps</div>
+            <div class="hl-result-label">Decomposed across 3 distinct driver categories</div>
           </div>
         </div>
-        <div class="acc-companion-strip">
-          <div class="acc-companion-label">Companion</div>
-          <div class="acc-sep">·</div>
-          <div class="acc-companion-skill">Exploratory Data Analysis</div>
-          <div class="acc-companion-badge">In the lab</div>
+        <div class="hl-companion">
+          <div class="hl-companion-label">Companion</div>
+          <div class="hl-companion-skill">Exploratory Data Analysis</div>
+          <div class="hl-companion-badge">In the lab</div>
         </div>
       </div>
     </div>
 
-    <div class="accordion-item" id="acc2">
-      <div class="accordion-header" onclick="toggleAcc('acc2')">
-        <div class="acc-num">02</div>
-        <div class="acc-title-block">
-          <div class="acc-domain">Loan Portfolio Analytics · Segmentation</div>
-          <div class="acc-title">Concurrent Loan Analysis: Unlocking $46M in Collections</div>
+    <div class="highlight-card" id="acc2">
+      <div class="highlight-header" onclick="toggleAcc('acc2')">
+        <div class="hl-num">02</div>
+        <div class="hl-title-block">
+          <div class="hl-domain">Loan Portfolio Analytics · Segmentation</div>
+          <div class="hl-title">Concurrent Loan Analysis: Unlocking $46M in Collections</div>
         </div>
-        <div class="acc-wip">SQL · In the lab</div>
-        <div class="acc-toggle"><span class="acc-arrow">↓</span></div>
+        <div class="hl-wip">SQL · In the lab</div>
+        <div class="hl-toggle"><span class="hl-arrow">↓</span></div>
       </div>
-      <div class="accordion-body">
-        <div class="acc-body-grid">
+      <div class="highlight-body">
+        <div class="hl-body-grid">
           <div>
-            <p class="acc-desc">Despite rising call volumes, recoveries had plateaued — and leadership doubted the data. I validated all pipelines end-to-end, then used SQL and Python cohort analysis to identify concurrent-loan customers as an under-addressed segment. A t-test confirmed significantly lower PTP rates. Targeted agent coaching drove a 15% PTP lift per customer.</p>
-            <div class="acc-tags">
-              <span class="tag t-sql">SQL</span><span class="tag t-py">Python</span><span class="tag t-tab">Tableau</span>
-              <span class="tag t-fin">Cohort Analysis</span><span class="tag t-fin">Statistical Testing</span><span class="tag t-fin">Heatmap Visualization</span>
+            <p class="hl-desc">Despite rising call volumes, recoveries had plateaued — and leadership doubted the data. I validated all pipelines end-to-end, then used SQL and Python cohort analysis to identify concurrent-loan customers as an under-addressed segment. A t-test confirmed significantly lower PTP rates. Targeted agent coaching drove a 15% PTP lift per customer.</p>
+            <div class="hl-tags">
+              <span class="hl-tag">SQL</span><span class="hl-tag">Python</span><span class="hl-tag">Tableau</span>
+              <span class="hl-tag">Cohort Analysis</span><span class="hl-tag">Statistical Testing</span><span class="hl-tag">Heatmap</span>
             </div>
           </div>
-          <div class="acc-result-panel">
-            <div class="acc-figure">$46M</div>
-            <div class="acc-result-label">Incremental collections improvement from segment targeting</div>
+          <div class="hl-result-panel">
+            <div class="hl-figure">$46M</div>
+            <div class="hl-result-label">Incremental collections improvement from segment targeting</div>
           </div>
         </div>
-        <div class="acc-companion-strip">
-          <div class="acc-companion-label">Companion</div>
-          <div class="acc-sep">·</div>
-          <div class="acc-companion-skill">SQL Deep Dive</div>
-          <div class="acc-companion-badge">In the lab</div>
+        <div class="hl-companion">
+          <div class="hl-companion-label">Companion</div>
+          <div class="hl-companion-skill">SQL Deep Dive</div>
+          <div class="hl-companion-badge">In the lab</div>
         </div>
       </div>
     </div>
 
-    <div class="accordion-item" id="acc3">
-      <div class="accordion-header" onclick="toggleAcc('acc3')">
-        <div class="acc-num">03</div>
-        <div class="acc-title-block">
-          <div class="acc-domain">Performance Management · Dashboard Engineering</div>
-          <div class="acc-title">Member Engagement Dashboard — 3-Tier Tableau System</div>
+    <div class="highlight-card" id="acc3">
+      <div class="highlight-header" onclick="toggleAcc('acc3')">
+        <div class="hl-num">03</div>
+        <div class="hl-title-block">
+          <div class="hl-domain">Performance Management · Dashboard Engineering</div>
+          <div class="hl-title">Member Engagement Dashboard — 3-Tier Tableau System</div>
         </div>
-        <div class="acc-wip">Power BI · In the lab</div>
-        <div class="acc-toggle"><span class="acc-arrow">↓</span></div>
+        <div class="hl-wip">Power BI · In the lab</div>
+        <div class="hl-toggle"><span class="hl-arrow">↓</span></div>
       </div>
-      <div class="accordion-body">
-        <div class="acc-body-grid">
+      <div class="highlight-body">
+        <div class="hl-body-grid">
           <div>
-            <p class="acc-desc">Built a program-level Tableau dashboard from scratch for a major LOB with 100+ users across executive, manager, and associate tiers. Started with stakeholder workshops to define KPIs, unified fragmented data pipelines, introduced LOD expressions to cut load time from 20s to under 5s, and ran phased UAT before enterprise rollout.</p>
-            <div class="acc-tags">
-              <span class="tag t-tab">Tableau</span><span class="tag t-sql">SQL</span>
-              <span class="tag t-fin">KPI Design</span><span class="tag t-fin">ETL Pipeline</span><span class="tag t-fin">LOD Expressions</span>
+            <p class="hl-desc">Built a program-level Tableau dashboard from scratch for a major LOB with 100+ users across executive, manager, and associate tiers. Started with stakeholder workshops to define KPIs, unified fragmented data pipelines, introduced LOD expressions to cut load time from 20s to under 5s, and ran phased UAT before enterprise rollout.</p>
+            <div class="hl-tags">
+              <span class="hl-tag">Tableau</span><span class="hl-tag">SQL</span>
+              <span class="hl-tag">KPI Design</span><span class="hl-tag">ETL Pipeline</span><span class="hl-tag">LOD Expressions</span>
             </div>
           </div>
-          <div class="acc-result-panel">
-            <div class="acc-figure">100+</div>
-            <div class="acc-result-label">Active users across executive, manager & associate tiers</div>
+          <div class="hl-result-panel">
+            <div class="hl-figure">100+</div>
+            <div class="hl-result-label">Active users across executive, manager & associate tiers</div>
           </div>
         </div>
-        <div class="acc-companion-strip">
-          <div class="acc-companion-label">Companion</div>
-          <div class="acc-sep">·</div>
-          <div class="acc-companion-skill">Power BI Dashboard</div>
-          <div class="acc-companion-badge">In the lab</div>
+        <div class="hl-companion">
+          <div class="hl-companion-label">Companion</div>
+          <div class="hl-companion-skill">Power BI Dashboard</div>
+          <div class="hl-companion-badge">In the lab</div>
         </div>
       </div>
     </div>
 
-    <div class="accordion-item" id="acc4">
-      <div class="accordion-header" onclick="toggleAcc('acc4')">
-        <div class="acc-num">04</div>
-        <div class="acc-title-block">
-          <div class="acc-domain">Customer Analytics · Speech Analytics · Behavior Change</div>
-          <div class="acc-title">DSC Retention: $3.6M in Recovered Balances via Agent Gamification</div>
+    <div class="highlight-card" id="acc4">
+      <div class="highlight-header" onclick="toggleAcc('acc4')">
+        <div class="hl-num">04</div>
+        <div class="hl-title-block">
+          <div class="hl-domain">Customer Analytics · Speech Analytics · Behavior Change</div>
+          <div class="hl-title">DSC Retention: $3.6M in Recovered Balances via Agent Gamification</div>
         </div>
-        <div class="acc-wip">Sheets · In the lab</div>
-        <div class="acc-toggle"><span class="acc-arrow">↓</span></div>
+        <div class="hl-wip">Sheets · In the lab</div>
+        <div class="hl-toggle"><span class="hl-arrow">↓</span></div>
       </div>
-      <div class="accordion-body">
-        <div class="acc-body-grid">
+      <div class="highlight-body">
+        <div class="hl-body-grid">
           <div>
-            <p class="acc-desc">Speech analytics revealed 50%+ of Debt Settlement Company calls weren't handled effectively. I built a Tableau dashboard tracking three recovery outcomes (Promise-to-Pay, Hardship enrollment, CCCS), redesigned the agent knowledge base, introduced WalkMe real-time guidance, and launched a gamified incentive contest — shifting agent behavior at scale.</p>
-            <div class="acc-tags">
-              <span class="tag t-tab">Tableau</span><span class="tag t-sql">SQL</span>
-              <span class="tag t-fin">Speech Analytics</span><span class="tag t-fin">Incentive Design</span><span class="tag t-fin">Customer Obsession</span>
+            <p class="hl-desc">Speech analytics revealed 50%+ of Debt Settlement Company calls weren't handled effectively. I built a Tableau dashboard tracking three recovery outcomes (Promise-to-Pay, Hardship enrollment, CCCS), redesigned the agent knowledge base, introduced WalkMe real-time guidance, and launched a gamified incentive contest — shifting agent behavior at scale.</p>
+            <div class="hl-tags">
+              <span class="hl-tag">Tableau</span><span class="hl-tag">SQL</span>
+              <span class="hl-tag">Speech Analytics</span><span class="hl-tag">Incentive Design</span><span class="hl-tag">Customer Obsession</span>
             </div>
           </div>
-          <div class="acc-result-panel">
-            <div class="acc-figure">$3.6M</div>
-            <div class="acc-result-label">Annualized incremental recovered balances</div>
+          <div class="hl-result-panel">
+            <div class="hl-figure">$3.6M</div>
+            <div class="hl-result-label">Annualized incremental recovered balances</div>
           </div>
         </div>
-        <div class="acc-companion-strip">
-          <div class="acc-companion-label">Companion</div>
-          <div class="acc-sep">·</div>
-          <div class="acc-companion-skill">Google Sheets Executive Summary</div>
-          <div class="acc-companion-badge">In the lab</div>
+        <div class="hl-companion">
+          <div class="hl-companion-label">Companion</div>
+          <div class="hl-companion-skill">Google Sheets Executive Summary</div>
+          <div class="hl-companion-badge">In the lab</div>
         </div>
       </div>
     </div>
 
-    <div class="accordion-item" id="acc5">
-      <div class="accordion-header" onclick="toggleAcc('acc5')">
-        <div class="acc-num">05</div>
-        <div class="acc-title-block">
-          <div class="acc-domain">Workforce Analytics · Machine Learning</div>
-          <div class="acc-title">WFM ML Model: 30 FTE Reduction, $1.4M Annualized Savings</div>
+    <div class="highlight-card" id="acc5">
+      <div class="highlight-header" onclick="toggleAcc('acc5')">
+        <div class="hl-num">05</div>
+        <div class="hl-title-block">
+          <div class="hl-domain">Workforce Analytics · Machine Learning</div>
+          <div class="hl-title">WFM ML Model: 30 FTE Reduction, $1.4M Annualized Savings</div>
         </div>
-        <div class="acc-wip">Python · In the lab</div>
-        <div class="acc-toggle"><span class="acc-arrow">↓</span></div>
+        <div class="hl-wip">Python · In the lab</div>
+        <div class="hl-toggle"><span class="hl-arrow">↓</span></div>
       </div>
-      <div class="accordion-body">
-        <div class="acc-body-grid">
+      <div class="highlight-body">
+        <div class="hl-body-grid">
           <div>
-            <p class="acc-desc">Developed a machine learning-powered workforce management model to optimize staffing levels for a U.S. lending client. The model combined historical call volume patterns, handle time distributions, and service level targets to recommend daily staffing schedules — reducing overstaffing by 30 FTE without degrading service levels.</p>
-            <div class="acc-tags">
-              <span class="tag t-py">Python</span><span class="tag t-sql">SQL</span>
-              <span class="tag t-fin">Machine Learning</span><span class="tag t-fin">Forecasting</span><span class="tag t-fin">Workforce Planning</span>
+            <p class="hl-desc">Developed a machine learning-powered workforce management model to optimize staffing levels for a U.S. lending client. The model combined historical call volume patterns, handle time distributions, and service level targets to recommend daily staffing schedules — reducing overstaffing by 30 FTE without degrading service levels.</p>
+            <div class="hl-tags">
+              <span class="hl-tag">Python</span><span class="hl-tag">SQL</span>
+              <span class="hl-tag">Machine Learning</span><span class="hl-tag">Forecasting</span><span class="hl-tag">Workforce Planning</span>
             </div>
           </div>
-          <div class="acc-result-panel">
-            <div class="acc-figure">$1.4M</div>
-            <div class="acc-result-label">Annualized FTE savings from ML-driven staffing optimization</div>
+          <div class="hl-result-panel">
+            <div class="hl-figure">$1.4M</div>
+            <div class="hl-result-label">Annualized FTE savings from ML-driven staffing optimization</div>
           </div>
         </div>
-        <div class="acc-companion-strip">
-          <div class="acc-companion-label">Companion</div>
-          <div class="acc-sep">·</div>
-          <div class="acc-companion-skill">Python Forecasting Notebook</div>
-          <div class="acc-companion-badge">In the lab</div>
+        <div class="hl-companion">
+          <div class="hl-companion-label">Companion</div>
+          <div class="hl-companion-skill">Python Forecasting Notebook</div>
+          <div class="hl-companion-badge">In the lab</div>
         </div>
       </div>
     </div>
 
-    <div class="accordion-item" id="acc6">
-      <div class="accordion-header" onclick="toggleAcc('acc6')">
-        <div class="acc-num">06</div>
-        <div class="acc-title-block">
-          <div class="acc-domain">Compliance Analytics · Complaint Management</div>
-          <div class="acc-title">Complaint Analytics Dashboard — Reducing Bounce-Back Rates</div>
+    <div class="highlight-card" id="acc6">
+      <div class="highlight-header" onclick="toggleAcc('acc6')">
+        <div class="hl-num">06</div>
+        <div class="hl-title-block">
+          <div class="hl-domain">Compliance Analytics · Complaint Management</div>
+          <div class="hl-title">Complaint Analytics Dashboard — Reducing Bounce-Back Rates</div>
         </div>
-        <div class="acc-wip">Looker · In the lab</div>
-        <div class="acc-toggle"><span class="acc-arrow">↓</span></div>
+        <div class="hl-wip">Looker · In the lab</div>
+        <div class="hl-toggle"><span class="hl-arrow">↓</span></div>
       </div>
-      <div class="accordion-body">
-        <div class="acc-body-grid">
+      <div class="highlight-body">
+        <div class="hl-body-grid">
           <div>
-            <p class="acc-desc">Complaints were scattered across systems, reviewed manually, and escalating without resolution. I built a centralized Tableau dashboard consolidating data across channels, surfaced top complaint categories and agent-level patterns, and helped the compliance team establish a Customer Advocacy Response Team for 24-48 hour resolution.</p>
-            <div class="acc-tags">
-              <span class="tag t-tab">Tableau</span><span class="tag t-sql">SQL</span>
-              <span class="tag t-fin">Compliance Analytics</span><span class="tag t-fin">RCA</span><span class="tag t-fin">Customer Experience</span>
+            <p class="hl-desc">Complaints were scattered across systems, reviewed manually, and escalating without resolution. I built a centralized Tableau dashboard consolidating data across channels, surfaced top complaint categories and agent-level patterns, and helped the compliance team establish a Customer Advocacy Response Team for 24-48 hour resolution.</p>
+            <div class="hl-tags">
+              <span class="hl-tag">Tableau</span><span class="hl-tag">SQL</span>
+              <span class="hl-tag">Compliance Analytics</span><span class="hl-tag">RCA</span><span class="hl-tag">Customer Experience</span>
             </div>
           </div>
-          <div class="acc-result-panel">
-            <div class="acc-figure">40%</div>
-            <div class="acc-result-label">Of all complaints traced to top 3 fixable system issues</div>
+          <div class="hl-result-panel">
+            <div class="hl-figure">40%</div>
+            <div class="hl-result-label">Of all complaints traced to top 3 fixable system issues</div>
           </div>
         </div>
-        <div class="acc-companion-strip">
-          <div class="acc-companion-label">Companion</div>
-          <div class="acc-sep">·</div>
-          <div class="acc-companion-skill">Looker Studio Report</div>
-          <div class="acc-companion-badge">In the lab</div>
+        <div class="hl-companion">
+          <div class="hl-companion-label">Companion</div>
+          <div class="hl-companion-skill">Looker Studio Report</div>
+          <div class="hl-companion-badge">In the lab</div>
         </div>
       </div>
     </div>
@@ -597,12 +537,11 @@ footer span { color: rgba(245,242,235,0.5); }
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- WORK EXPERIENCE -->
 <section id="about">
-  <p class="section-label">Work Experience</p>
+  <p class="section-eyebrow">Work Experience</p>
   <h2><span class="js-exp-years">8</span> years. Three industries. One discipline.</h2>
   <p class="section-intro">Senior analytics practitioner with deep roots in FinTech lending, collections, and workforce operations — and a track record of turning messy data into decisions that stick.</p>
-
   <div class="about-grid">
     <div class="timeline">
       <div class="tl-item fade-up">
@@ -627,7 +566,6 @@ footer span { color: rgba(245,242,235,0.5); }
         <div class="tl-note">Finance & HR reporting modernization, Patient-to-Payment analytics, and Tableau/Power BI dashboard optimization across healthcare datasets.</div>
       </div>
     </div>
-
     <div class="skills-compact">
       <div>
         <div class="sk-group-label">Visualization</div>
@@ -664,21 +602,21 @@ footer span { color: rgba(245,242,235,0.5); }
 
 <!-- APPROACH -->
 <section id="approach">
-  <p class="section-label">How I Work</p>
+  <p class="section-eyebrow">How I Work</p>
   <h2>Analytics as a <em>system</em>, not a report.</h2>
   <p class="section-intro">Every project follows the same discipline — start with the business question, not the data.</p>
   <div class="approach-strip">
-    <div class="approach-card fade-up" data-n="01">
+    <div class="approach-card fade-up">
       <div class="approach-icon">◎</div>
       <h3>Business-First Framing</h3>
       <p>Every analysis starts with a stakeholder workshop — not a data pull. Question → Metric → Data. Measure what matters, not what's easiest to query.</p>
     </div>
-    <div class="approach-card fade-up" data-n="02">
+    <div class="approach-card fade-up">
       <div class="approach-icon">⊕</div>
       <h3>Rigorous Root Cause</h3>
       <p>Metrics lie when context is missing. Validate pipelines, isolate variables, never present a finding I can't reconcile back to its source. Trust — then verify.</p>
     </div>
-    <div class="approach-card fade-up" data-n="03">
+    <div class="approach-card fade-up">
       <div class="approach-icon">◈</div>
       <h3>Executive-Grade Output</h3>
       <p>Insights that don't change decisions are just reports. Designed for the 30-second scan — clear KPI hierarchy, one implication, one recommended action.</p>
@@ -689,7 +627,7 @@ footer span { color: rgba(245,242,235,0.5); }
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-left">
-    <p class="section-label">Let's Connect</p>
+    <p class="section-eyebrow">Let's Connect</p>
     <h2>Good work starts with the right conversation.</h2>
     <div class="contact-links">
       <a href="mailto:aniketc1994@gmail.com" class="contact-link fade-up">
@@ -711,9 +649,7 @@ footer span { color: rgba(245,242,235,0.5); }
     </div>
   </div>
   <div class="contact-right">
-    <div class="contact-manifesto">
-      If the work is interesting and the analytics problem is real, I'm always open to a conversation.
-    </div>
+    <div class="contact-manifesto">If the work is interesting and the analytics problem is real, I'm always open to a conversation.</div>
     <p class="contact-note">Whether you're building something from scratch, rethinking how your team uses data, or just want a second pair of eyes on a thorny BI problem — reach out. Good analytics conversations are always worth having.</p>
   </div>
 </section>
@@ -721,11 +657,10 @@ footer span { color: rgba(245,242,235,0.5); }
 <!-- FOOTER -->
 <footer>
   <span>Aniket Chavan · Analytics Portfolio</span>
-  <span>© 2025</span>
+  <span>San Francisco · Seattle · Remote · © 2026</span>
 </footer>
 
 <script>
-// Dynamic experience calculation: 4 static years + years since June 6, 2022
 (function() {
   const anchor = new Date('2022-06-06');
   const now = new Date();
@@ -733,11 +668,10 @@ footer span { color: rgba(245,242,235,0.5); }
   const total = 4 + dynamicYears;
   document.querySelectorAll('.js-exp-years').forEach(el => el.textContent = total);
 })();
-
 function toggleAcc(id) {
   const item = document.getElementById(id);
   const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.accordion-item.open').forEach(el => el.classList.remove('open'));
+  document.querySelectorAll('.highlight-card.open').forEach(el => el.classList.remove('open'));
   if (!isOpen) item.classList.add('open');
 }
 const obs = new IntersectionObserver(
