@@ -791,7 +791,6 @@ function toggleAcc(id) {
 // ── SCROLL REVEAL FOR ALL SECTIONS ──
 (function() {
   const targets = [
-    ...document.querySelectorAll('.highlight-card'),
     ...document.querySelectorAll('#about h2, #about .section-eyebrow, #about .section-intro'),
     ...document.querySelectorAll('.tl-item'),
     ...document.querySelectorAll('.skills-compact > div'),
@@ -802,18 +801,25 @@ function toggleAcc(id) {
     ...document.querySelectorAll('.contact-manifesto, .contact-note'),
   ];
 
-  // Projects eyebrow, h2 and intro — all revealed after metrics complete
+  // Projects eyebrow, h2, intro and cards — all revealed after metrics complete
   const projectsEyebrow = document.querySelector('#projects .section-eyebrow');
   const projectsH2 = document.querySelector('#projects h2');
   const projectsIntro = document.querySelector('#projects .section-intro');
-  [projectsEyebrow, projectsH2, projectsIntro].forEach(el => {
+  const highlightCards = [...document.querySelectorAll('.highlight-card')];
+
+  [projectsEyebrow, projectsH2, projectsIntro, ...highlightCards].forEach(el => {
     if (el) el.classList.add('scroll-reveal');
   });
+
   window.revealProjectsEyebrow = () => {
     document.getElementById('projects').classList.add('border-visible');
     setTimeout(() => { if (projectsEyebrow) projectsEyebrow.classList.add('revealed'); }, 0);
     setTimeout(() => { if (projectsH2) projectsH2.classList.add('revealed'); }, 120);
     setTimeout(() => { if (projectsIntro) projectsIntro.classList.add('revealed'); }, 240);
+    // Cards stagger in one by one after the intro
+    highlightCards.forEach((card, i) => {
+      setTimeout(() => card.classList.add('revealed'), 360 + i * 120);
+    });
   };
 
   targets.forEach((el, i) => {
@@ -887,6 +893,7 @@ function toggleAcc(id) {
       drawLine(1);
       revealItems(1);
       document.getElementById('home').classList.add('border-visible');
+      document.getElementById('projects').classList.add('border-visible');
       if (window.revealProjectsEyebrow) window.revealProjectsEyebrow();
     }
   })();
@@ -928,7 +935,10 @@ function toggleAcc(id) {
 
     e.preventDefault();
 
-    const delta = e.deltaY > 0 ? 0.01 : -0.01;
+    // Normalize: target ~800px of total scroll to complete sequence
+    // deltaY varies: trackpad ~3-10px per event, mouse wheel ~100-120px per tick
+    const normalized = Math.min(Math.abs(e.deltaY), 120) / 120;
+    const delta = e.deltaY > 0 ? normalized * 0.04 : -(normalized * 0.04);
     progress = Math.min(1, Math.max(0, progress + delta));
 
     drawLine(progress);
