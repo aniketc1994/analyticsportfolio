@@ -302,6 +302,40 @@ h2 em { font-style: italic; color: var(--apple-blue); font-family: 'DM Serif Dis
 }
 .contact-note { font-size: 15px; color: var(--apple-secondary); line-height: 1.8; }
 
+/* HERO INLINE SCROLL HINT */
+.hero-scroll-hint {
+  display: flex; align-items: center; gap: 10px;
+  animation: heroFadeUp 0.7s ease 0.72s both;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.hero-scroll-hint.hidden { opacity: 0; pointer-events: none; transform: translateY(-6px); }
+.hero-scroll-text {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
+  color: var(--apple-secondary); font-style: italic;
+}
+
+/* SCROLL INDICATOR (fixed bottom — now removed from HTML, keep mouse styles) */
+.scroll-indicator-mouse {
+  width: 22px; height: 34px; border: 1.5px solid var(--apple-border);
+  border-radius: 11px; position: relative; background: transparent;
+}
+.scroll-indicator-dot {
+  width: 4px; height: 7px; background: var(--apple-blue);
+  border-radius: 2px; position: absolute;
+  top: 5px; left: 50%; transform: translateX(-50%);
+  animation: scrollDot 1.6s ease infinite;
+}
+@keyframes scrollDot {
+  0%   { opacity: 1; top: 5px; }
+  60%  { opacity: 0; top: 18px; }
+  61%  { opacity: 0; top: 5px; }
+  100% { opacity: 1; top: 5px; }
+}
+@keyframes scrollFadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
 /* HERO LOAD ANIMATION */
 .hero-eyebrow,
 .hero-inner h1,
@@ -399,9 +433,17 @@ footer {
     <p class="hero-eyebrow">Analytics Manager · <span class="js-exp-years">8</span> Years · FinTech, CPG & Healthcare</p>
     <h1>Data that <em>drives</em> decisions.</h1>
     <p class="hero-desc">I build end-to-end analytics systems — from SQL pipelines and predictive models to executive dashboards that actually change what leadership does next. Specializing in collections, workforce, and performance analytics for U.S. lending & banking.</p>
-    <div class="hero-ctas">
-      <a href="#projects" class="btn-primary">View Projects</a>
-      <a href="#contact" class="btn-outline">Get in Touch</a>
+    <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+      <div class="hero-ctas" id="heroCtas" style="opacity:0;transform:translateY(10px);transition:opacity 0.5s ease,transform 0.5s ease;display:flex;align-items:center;gap:10px;">
+        <a href="#projects" class="btn-primary" id="viewProjectsBtn">View Projects</a>
+        <a href="#contact" class="btn-outline" id="getInTouchBtn">Get in Touch</a>
+        <div class="hero-scroll-hint" id="heroScrollHint" style="display:flex;align-items:center;gap:8px;cursor:pointer;" id="scrollHintBtn">
+          <div class="scroll-indicator-mouse" style="width:18px;height:28px;border-radius:9px;flex-shrink:0;">
+            <div class="scroll-indicator-dot"></div>
+          </div>
+          <div class="hero-scroll-text">The numbers scroll in ↓</div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="impact-strip-wrap" id="impactStrip">
@@ -762,6 +804,44 @@ footer {
 <script>
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
+
+// View Projects — bypass scroll hijack, complete everything instantly
+document.getElementById('viewProjectsBtn').addEventListener('click', function(e) {
+  e.preventDefault();
+  if (window.bypassMetrics) window.bypassMetrics();
+  setTimeout(() => {
+    document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+  }, 420);
+});
+
+// Get in Touch — same bypass, scroll to contact
+document.getElementById('getInTouchBtn').addEventListener('click', function(e) {
+  e.preventDefault();
+  if (window.bypassMetrics) window.bypassMetrics();
+  setTimeout(() => {
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  }, 420);
+});
+(function() {
+  const ctas = document.getElementById('heroCtas');
+  let revealed = false;
+  function revealCtas() {
+    if (revealed) return;
+    revealed = true;
+    if (ctas) { ctas.style.opacity = '1'; ctas.style.transform = 'translateY(0)'; }
+  }
+  window.revealCtas = revealCtas;
+  window.addEventListener('wheel', revealCtas, { passive: true, once: true });
+  window.addEventListener('touchmove', revealCtas, { passive: true, once: true });
+})();
+
+// Scroll hint click — bypass metrics
+document.getElementById('heroScrollHint').addEventListener('click', function() {
+  if (window.bypassMetrics) window.bypassMetrics();
+  setTimeout(() => {
+    document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+  }, 420);
+});
 (function() {
   const anchor = new Date('2022-06-06');
   const now = new Date();
@@ -950,6 +1030,7 @@ function toggleAcc(id) {
       document.body.style.overflow = '';
       if (window.revealProjectsEyebrow) window.revealProjectsEyebrow();
       document.getElementById('home').classList.add('border-visible');
+      if (window.revealCtas) window.revealCtas();
     }
     if (progress <= 0 && released) {
       // don't re-hijack going back up
@@ -974,6 +1055,20 @@ function toggleAcc(id) {
       document.body.style.overflow = '';
     }
   }, { passive: false });
+
+  window.bypassMetrics = function() {
+    if (released) return;
+    released = true;
+    hijacking = false;
+    progress = 1;
+    document.body.style.overflow = '';
+    drawLine(1);
+    revealItems(1);
+    document.getElementById('home').classList.add('border-visible');
+    document.getElementById('projects').classList.add('border-visible');
+    if (window.revealProjectsEyebrow) window.revealProjectsEyebrow();
+    if (window.revealCtas) window.revealCtas();
+  };
 
   // Initial state
   drawLine(0);
