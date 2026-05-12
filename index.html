@@ -171,22 +171,9 @@ h2 em { font-style: italic; color: var(--apple-blue); font-family: 'DM Serif Dis
   text-transform: uppercase; color: var(--apple-tertiary); margin-bottom: 4px;
 }
 .hl-title { font-size: 16px; font-weight: 600; color: var(--apple-text); line-height: 1.3; }
-.hl-wip {
-  font-size: 10px; font-weight: 500; padding: 4px 12px;
-  background: var(--apple-bg2); border: 0.5px solid var(--apple-border);
-  color: var(--apple-tertiary); align-self: center; margin: 0 12px;
-  border-radius: 980px; white-space: nowrap; position: relative; cursor: default;
-  z-index: 10;
-}
-.hl-wip::after {
-  content: 'Coming Soon'; position: absolute; bottom: calc(100% + 8px); left: 50%;
-  transform: translateX(-50%) translateY(4px);
-  background: var(--apple-text); color: #fff;
-  font-size: 10px; padding: 4px 10px; border-radius: 6px; white-space: nowrap;
-  opacity: 0; pointer-events: none; transition: opacity 0.18s, transform 0.18s;
-  z-index: 100;
-}
-.hl-wip:hover::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+.hl-header-pills { display: none; }
+.hl-tool-pill { display: none; }
+.hl-wip { display: none; }
 .hl-toggle {
   width: 48px; border-left: 0.5px solid var(--apple-border-light);
   display: flex; align-items: center; justify-content: center;
@@ -197,44 +184,25 @@ h2 em { font-style: italic; color: var(--apple-blue); font-family: 'DM Serif Dis
 
 .highlight-body {
   display: none; border-top: 0.5px solid var(--apple-border-light);
-  padding: 24px 24px 0 76px; background: var(--apple-bg);
+  background: var(--apple-bg); border-radius: 0 0 12px 12px; overflow: hidden;
 }
 .highlight-card.open .highlight-body { display: block; }
-.hl-body-grid { display: grid; grid-template-columns: 1fr 180px; gap: 32px; align-items: start; padding-bottom: 24px; }
-.hl-desc { font-size: 14px; color: var(--apple-secondary); line-height: 1.75; margin-bottom: 16px; }
+.hl-body-grid { display: grid; grid-template-columns: 1fr 410px; align-items: stretch; }
+.hl-left { padding: 22px 24px 24px 76px; border-right: 0.5px solid var(--apple-border-light); }
+.hl-right { padding: 22px 22px 24px; background: var(--apple-bg2); display: flex; flex-direction: column; gap: 14px; }
+.hl-right-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.hl-right-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--apple-secondary); }
+.hl-right-pills { display: flex; gap: 5px; flex-wrap: wrap; }
+.hl-right-pill { font-size: 10px; font-weight: 500; padding: 3px 9px; background: var(--apple-bg); border: 0.5px solid var(--apple-border-light); color: var(--apple-secondary); border-radius: 6px; }
+.hl-right-summary { font-size: 12.5px; color: var(--apple-secondary); line-height: 1.7; flex: 1; }
+.hl-right-link { display: inline-block; font-size: 10px; font-weight: 500; padding: 4px 10px; font-style: italic; background: var(--apple-bg); border: 0.5px dashed var(--apple-border); color: var(--apple-tertiary); border-radius: 980px; cursor: default; margin-top: auto; width: fit-content; }
+.hl-desc { font-size: 14px; color: var(--apple-text); line-height: 1.75; margin-bottom: 12px; }
+.hl-bullets { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+.hl-bullet { font-size: 12px; color: var(--apple-secondary); line-height: 1.5; font-style: italic; display: flex; gap: 8px; }
+.hl-bullet::before { content: '·'; color: var(--apple-tertiary); flex-shrink: 0; }
 .hl-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-.hl-tag {
-  font-size: 11px; font-weight: 500; padding: 4px 11px;
-  background: var(--apple-blue-light); color: var(--apple-blue); border-radius: 980px;
-}
-.hl-result-panel {
-  background: var(--apple-bg2); border-radius: 10px;
-  border: 0.5px solid var(--apple-border-light); padding: 20px;
-}
-.hl-figure { font-size: 32px; font-weight: 700; color: var(--apple-blue); line-height: 1; letter-spacing: -0.02em; margin-bottom: 8px; }
-.hl-result-label { font-size: 11px; color: var(--apple-secondary); line-height: 1.5; }
-.hl-companion {
-  margin: 0 -24px 0 -76px; padding: 12px 24px 12px 76px;
-  border-top: 0.5px solid var(--apple-border-light);
-  background: var(--apple-bg2);
-  display: flex; align-items: center; gap: 12px;
-}
-.hl-companion-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--apple-tertiary); }
-.hl-companion-skill { font-size: 13px; color: var(--apple-secondary); font-style: italic; font-family: 'DM Serif Display', serif; }
-.hl-companion-badge {
-  font-size: 10px; font-weight: 500; padding: 3px 10px;
-  background: var(--apple-bg); border: 0.5px dashed var(--apple-border);
-  color: var(--apple-tertiary); border-radius: 980px; margin-left: auto;
-  position: relative; cursor: default;
-}
-.hl-companion-badge::after {
-  content: 'Coming Soon'; position: absolute; bottom: calc(100% + 8px); left: 50%;
-  transform: translateX(-50%) translateY(4px);
-  background: var(--apple-text); color: #fff;
-  font-size: 10px; padding: 4px 10px; border-radius: 6px; white-space: nowrap;
-  opacity: 0; pointer-events: none; transition: opacity 0.18s, transform 0.18s;
-}
-.hl-companion-badge:hover::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+.hl-tag { font-size: 11px; font-weight: 500; padding: 4px 11px; background: var(--apple-blue-light); color: var(--apple-blue); border-radius: 980px; }
+.hl-right-summary { font-size: 12.5px; color: var(--apple-text); line-height: 1.7; flex: 1; }
 
 /* WORK EXPERIENCE */
 #about { background: var(--apple-text); color: #fff; border-top: 0.5px solid #333; }
@@ -479,6 +447,12 @@ footer {
   <p class="section-eyebrow">Career Highlights</p>
   <h2>Analytics that moved the needle.</h2>
   <p class="section-intro">Each project below is built from real analytical work in U.S. FinTech lending and operations. Every number is actual impact delivered.</p>
+  <div id="labPill" class="scroll-reveal" style="margin-bottom:28px;">
+    <div style="display:inline-flex;align-items:center;gap:7px;background:var(--apple-blue-light);border:0.5px solid #b5d4f4;border-radius:980px;padding:5px 14px 5px 10px;white-space:nowrap;">
+      <span style="font-size:12px;">⚗</span>
+      <span style="font-size:11px;font-weight:500;color:var(--apple-blue);">Each project has a live lab · Same analysis · Public dataset · Live AI tools</span>
+    </div>
+  </div>
 
   <div class="highlights-list">
 
@@ -489,28 +463,31 @@ footer {
           <div class="hl-domain">Collections Analytics · Root Cause Analysis</div>
           <div class="hl-title">PTP Rate Decline: Decomposing 930 Basis Points</div>
         </div>
-        <div class="hl-wip">EDA · In the lab</div>
+        <div class="hl-header-pills">
+          <span class="hl-tool-pill">Python</span><span class="hl-tool-pill">SQL</span><span class="hl-tool-pill">Tableau</span>
+          <span class="hl-wip">In the lab</span>
+        </div>
         <div class="hl-toggle"><span class="hl-arrow">↓</span></div>
       </div>
       <div class="highlight-body">
         <div class="hl-body-grid">
-          <div>
+          <div class="hl-left">
             <p class="hl-desc">When executive leadership suspected agent underperformance behind a 9.3pp drop in Promise-to-Pay rates, I built a waterfall decomposition across two years of data — isolating IVR automation (480 bps), hardship diversion (50 bps), portfolio strategy shifts (340 bps), and macro factors (70 bps). The analysis reframed a "performance problem" as strategic success.</p>
             <div class="hl-tags">
               <span class="hl-tag">SQL</span><span class="hl-tag">Python</span><span class="hl-tag">Tableau</span>
               <span class="hl-tag">Root Cause Analysis</span><span class="hl-tag">Waterfall Chart</span><span class="hl-tag">FinTech Collections</span>
             </div>
-            <!-- PTP WATERFALL REMOVED -->
           </div>
-          <div class="hl-result-panel">
-            <div class="hl-figure">930 bps</div>
-            <div class="hl-result-label">Decomposed across 3 distinct driver categories</div>
+          <div class="hl-right">
+            <div class="hl-right-top">
+              <div class="hl-right-label">In the lab</div>
+              <div class="hl-right-pills">
+                <span class="hl-right-pill">Python EDA</span><span class="hl-right-pill">SQL</span><span class="hl-right-pill">Custom GPT</span>
+              </div>
+            </div>
+            <p class="hl-right-summary">Mortgage delinquency waterfall decomposition for a leading real estate platform — same methodology applied to HMDA public data. Paired with a Custom GPT trained on the findings.</p>
+            <span class="hl-right-link">Coming soon ↗</span>
           </div>
-        </div>
-        <div class="hl-companion">
-          <div class="hl-companion-label">Companion</div>
-          <div class="hl-companion-skill">Exploratory Data Analysis</div>
-          <div class="hl-companion-badge">In the lab</div>
         </div>
       </div>
     </div>
@@ -520,29 +497,33 @@ footer {
         <div class="hl-num">02</div>
         <div class="hl-title-block">
           <div class="hl-domain">Loan Portfolio Analytics · Segmentation</div>
-          <div class="hl-title">Concurrent Loan Analysis: Unlocking $46M in Collections</div>
+          <div class="hl-title">Concurrent Loan Segmentation: $46M in Collections Unlocked</div>
         </div>
-        <div class="hl-wip">SQL · In the lab</div>
+        <div class="hl-header-pills">
+          <span class="hl-tool-pill">SQL</span><span class="hl-tool-pill">Python</span><span class="hl-tool-pill">Tableau</span>
+          <span class="hl-wip">In the lab</span>
+        </div>
         <div class="hl-toggle"><span class="hl-arrow">↓</span></div>
       </div>
       <div class="highlight-body">
         <div class="hl-body-grid">
-          <div>
+          <div class="hl-left">
             <p class="hl-desc">Despite rising call volumes, recoveries had plateaued — and leadership doubted the data. I validated all pipelines end-to-end, then used SQL and Python cohort analysis to identify concurrent-loan customers as an under-addressed segment. A t-test confirmed significantly lower PTP rates. Targeted agent coaching drove a 15% PTP lift per customer.</p>
             <div class="hl-tags">
               <span class="hl-tag">SQL</span><span class="hl-tag">Python</span><span class="hl-tag">Tableau</span>
-              <span class="hl-tag">Cohort Analysis</span><span class="hl-tag">Statistical Testing</span><span class="hl-tag">Heatmap</span>
+              <span class="hl-tag">Cohort Analysis</span><span class="hl-tag">Statistical Testing</span><span class="hl-tag">Segmentation</span>
             </div>
           </div>
-          <div class="hl-result-panel">
-            <div class="hl-figure">$46M</div>
-            <div class="hl-result-label">Incremental collections improvement from segment targeting</div>
+          <div class="hl-right">
+            <div class="hl-right-top">
+              <div class="hl-right-label">In the lab</div>
+              <div class="hl-right-pills">
+                <span class="hl-right-pill">SQL</span><span class="hl-right-pill">Python</span><span class="hl-right-pill">Gemini Gem</span>
+              </div>
+            </div>
+            <p class="hl-right-summary">Multi-product BNPL borrower segmentation for a leading buy-now-pay-later lender — concurrent obligations analysis using LendingClub public data. Paired with a Gemini Gem configured as a Collections Analyst AI.</p>
+            <span class="hl-right-link">Coming soon ↗</span>
           </div>
-        </div>
-        <div class="hl-companion">
-          <div class="hl-companion-label">Companion</div>
-          <div class="hl-companion-skill">SQL Deep Dive</div>
-          <div class="hl-companion-badge">In the lab</div>
         </div>
       </div>
     </div>
@@ -551,30 +532,38 @@ footer {
       <div class="highlight-header" onclick="toggleAcc('acc3')">
         <div class="hl-num">03</div>
         <div class="hl-title-block">
-          <div class="hl-domain">Performance Management · Dashboard Engineering</div>
-          <div class="hl-title">Member Engagement Dashboard — 3-Tier Tableau System</div>
+          <div class="hl-domain">Visualization & Reporting · Dashboard Engineering</div>
+          <div class="hl-title">Building a 3-Tier Performance Dashboard for Member Engagement</div>
         </div>
-        <div class="hl-wip">Power BI · In the lab</div>
+        <div class="hl-header-pills">
+          <span class="hl-tool-pill">Tableau</span><span class="hl-tool-pill">Claude Skills</span><span class="hl-tool-pill">Gemini Canvas</span>
+          <span class="hl-wip">In the lab</span>
+        </div>
         <div class="hl-toggle"><span class="hl-arrow">↓</span></div>
       </div>
       <div class="highlight-body">
         <div class="hl-body-grid">
-          <div>
-            <p class="hl-desc">Built a program-level Tableau dashboard from scratch for a major LOB with 100+ users across executive, manager, and associate tiers. Started with stakeholder workshops to define KPIs, unified fragmented data pipelines, introduced LOD expressions to cut load time from 20s to under 5s, and ran phased UAT before enterprise rollout.</p>
+          <div class="hl-left">
+            <p class="hl-desc">Built a program-level Tableau dashboard from scratch for a major LOB with 100+ users across executive, manager, and associate tiers. Started with stakeholder workshops to define KPIs, unified fragmented data pipelines, introduced LOD expressions for performance optimization, and ran phased UAT before enterprise rollout.</p>
+            <div class="hl-bullets">
+              <div class="hl-bullet">50+ dashboards automated, reducing weekly reporting prep from 3 hrs to 5 mins — 98% reduction</div>
+              <div class="hl-bullet">Ops sizing dashboards for CCaaS transition and AI initiatives identified ~$500K in annualized FTE savings</div>
+            </div>
             <div class="hl-tags">
               <span class="hl-tag">Tableau</span><span class="hl-tag">SQL</span>
               <span class="hl-tag">KPI Design</span><span class="hl-tag">ETL Pipeline</span><span class="hl-tag">LOD Expressions</span>
             </div>
           </div>
-          <div class="hl-result-panel">
-            <div class="hl-figure">100+</div>
-            <div class="hl-result-label">Active users across executive, manager & associate tiers</div>
+          <div class="hl-right">
+            <div class="hl-right-top">
+              <div class="hl-right-label">In the lab</div>
+              <div class="hl-right-pills">
+                <span class="hl-right-pill">Tableau</span><span class="hl-right-pill">Claude Skills</span><span class="hl-right-pill">Gemini Canvas</span>
+              </div>
+            </div>
+            <p class="hl-right-summary">3-tier Tableau dashboard architecture applied to a leading U.S. communications company — unified exec, manager, and agent views from a single pipeline. Paired with a Claude Skill for automated KPI dictionary generation.</p>
+            <span class="hl-right-link">Coming soon ↗</span>
           </div>
-        </div>
-        <div class="hl-companion">
-          <div class="hl-companion-label">Companion</div>
-          <div class="hl-companion-skill">Power BI Dashboard</div>
-          <div class="hl-companion-badge">In the lab</div>
         </div>
       </div>
     </div>
@@ -586,27 +575,31 @@ footer {
           <div class="hl-domain">Customer Analytics · Speech Analytics · Behavior Change</div>
           <div class="hl-title">DSC Retention: $3.6M in Recovered Balances via Agent Gamification</div>
         </div>
-        <div class="hl-wip">Sheets · In the lab</div>
+        <div class="hl-header-pills">
+          <span class="hl-tool-pill">Tableau</span><span class="hl-tool-pill">SQL</span><span class="hl-tool-pill">Google Sheets</span>
+          <span class="hl-wip">In the lab</span>
+        </div>
         <div class="hl-toggle"><span class="hl-arrow">↓</span></div>
       </div>
       <div class="highlight-body">
         <div class="hl-body-grid">
-          <div>
+          <div class="hl-left">
             <p class="hl-desc">Speech analytics revealed 50%+ of Debt Settlement Company calls weren't handled effectively. I built a Tableau dashboard tracking three recovery outcomes (Promise-to-Pay, Hardship enrollment, CCCS), redesigned the agent knowledge base, introduced WalkMe real-time guidance, and launched a gamified incentive contest — shifting agent behavior at scale.</p>
             <div class="hl-tags">
               <span class="hl-tag">Tableau</span><span class="hl-tag">SQL</span>
               <span class="hl-tag">Speech Analytics</span><span class="hl-tag">Incentive Design</span><span class="hl-tag">Customer Obsession</span>
             </div>
           </div>
-          <div class="hl-result-panel">
-            <div class="hl-figure">$3.6M</div>
-            <div class="hl-result-label">Annualized incremental recovered balances</div>
+          <div class="hl-right">
+            <div class="hl-right-top">
+              <div class="hl-right-label">In the lab</div>
+              <div class="hl-right-pills">
+                <span class="hl-right-pill">Tableau</span><span class="hl-right-pill">SQL</span><span class="hl-right-pill">Google Sheets</span>
+              </div>
+            </div>
+            <p class="hl-right-summary">Customer churn intervention analytics for a leading U.S. telecommunications company — speech analytics to NPS signal mapping, agent coaching effectiveness, and retention gamification using telecom churn data.</p>
+            <span class="hl-right-link">Coming soon ↗</span>
           </div>
-        </div>
-        <div class="hl-companion">
-          <div class="hl-companion-label">Companion</div>
-          <div class="hl-companion-skill">Google Sheets Executive Summary</div>
-          <div class="hl-companion-badge">In the lab</div>
         </div>
       </div>
     </div>
@@ -615,30 +608,38 @@ footer {
       <div class="highlight-header" onclick="toggleAcc('acc5')">
         <div class="hl-num">05</div>
         <div class="hl-title-block">
-          <div class="hl-domain">Workforce Analytics · Machine Learning</div>
-          <div class="hl-title">WFM ML Model: 30 FTE Reduction, $1.4M Annualized Savings</div>
+          <div class="hl-domain">Workforce Analytics · AI-Informed Capacity Planning</div>
+          <div class="hl-title">AI-Informed WFM & Call Analytics: $1.77M in Combined Savings</div>
         </div>
-        <div class="hl-wip">Python · In the lab</div>
+        <div class="hl-header-pills">
+          <span class="hl-tool-pill">Python</span><span class="hl-tool-pill">Power BI</span><span class="hl-tool-pill">Claude Artifact</span>
+          <span class="hl-wip">In the lab</span>
+        </div>
         <div class="hl-toggle"><span class="hl-arrow">↓</span></div>
       </div>
       <div class="highlight-body">
         <div class="hl-body-grid">
-          <div>
-            <p class="hl-desc">Developed a machine learning-powered workforce management model to optimize staffing levels for a U.S. lending client. The model combined historical call volume patterns, handle time distributions, and service level targets to recommend daily staffing schedules — reducing overstaffing by 30 FTE without degrading service levels.</p>
+          <div class="hl-left">
+            <p class="hl-desc">Rebuilt the workforce capacity model for 5 ops teams using an Erlang-C formula combined with Cresta AI AHT projections. Modeled best, expected, and worst-case volume scenarios — reducing overstaffing by 30 FTE and delivering $1.4M in annualized savings. Separately, Cresta NLP transcript analysis quantified IVR and AI deflection opportunities worth ~$370K annually.</p>
+            <div class="hl-bullets">
+              <div class="hl-bullet">Call analytics: Cresta NLP transcripts used to size inbound call reason categories and model deflection impact</div>
+              <div class="hl-bullet">Findings presented to COO with scenario-based staffing recommendations across all 5 teams</div>
+            </div>
             <div class="hl-tags">
-              <span class="hl-tag">Python</span><span class="hl-tag">SQL</span>
-              <span class="hl-tag">Machine Learning</span><span class="hl-tag">Forecasting</span><span class="hl-tag">Workforce Planning</span>
+              <span class="hl-tag">Python</span><span class="hl-tag">Erlang-C</span><span class="hl-tag">NLP / Cresta AI</span>
+              <span class="hl-tag">Power BI</span><span class="hl-tag">Forecasting</span><span class="hl-tag">Workforce Planning</span>
             </div>
           </div>
-          <div class="hl-result-panel">
-            <div class="hl-figure">$1.4M</div>
-            <div class="hl-result-label">Annualized FTE savings from ML-driven staffing optimization</div>
+          <div class="hl-right">
+            <div class="hl-right-top">
+              <div class="hl-right-label">In the lab</div>
+              <div class="hl-right-pills">
+                <span class="hl-right-pill">Python</span><span class="hl-right-pill">Claude Artifact</span><span class="hl-right-pill">Gemini Live</span>
+              </div>
+            </div>
+            <p class="hl-right-summary">Interactive Erlang-C staffing calculator built as a Claude Artifact — input volume, AHT, and SLA targets, output FTE requirements by shift and scenario. Paired with a Gemini Live walkthrough of the model logic.</p>
+            <span class="hl-right-link">Coming soon ↗</span>
           </div>
-        </div>
-        <div class="hl-companion">
-          <div class="hl-companion-label">Companion</div>
-          <div class="hl-companion-skill">Python Forecasting Notebook</div>
-          <div class="hl-companion-badge">In the lab</div>
         </div>
       </div>
     </div>
@@ -647,30 +648,74 @@ footer {
       <div class="highlight-header" onclick="toggleAcc('acc6')">
         <div class="hl-num">06</div>
         <div class="hl-title-block">
-          <div class="hl-domain">Compliance Analytics · Complaint Management</div>
-          <div class="hl-title">Complaint Analytics Dashboard — Reducing Bounce-Back Rates</div>
+          <div class="hl-domain">CPG Analytics · Customer Cohort · Cross-Domain</div>
+          <div class="hl-title">CPG Demand & Customer Cohort: Hook Model + 45% Repurchase Lift</div>
         </div>
-        <div class="hl-wip">Looker · In the lab</div>
+        <div class="hl-header-pills">
+          <span class="hl-tool-pill">Power BI</span><span class="hl-tool-pill">Python</span><span class="hl-tool-pill">Gemini NotebookLM</span>
+          <span class="hl-wip">In the lab</span>
+        </div>
         <div class="hl-toggle"><span class="hl-arrow">↓</span></div>
       </div>
       <div class="highlight-body">
         <div class="hl-body-grid">
-          <div>
-            <p class="hl-desc">Complaints were scattered across systems, reviewed manually, and escalating without resolution. I built a centralized Tableau dashboard consolidating data across channels, surfaced top complaint categories and agent-level patterns, and helped the compliance team establish a Customer Advocacy Response Team for 24-48 hour resolution.</p>
+          <div class="hl-left">
+            <p class="hl-desc">At Fractal Analytics for a Fortune 500 CPG client, applied the Hook Model framework to diaper category buyers — segmenting customers into Hooked, One-Timers, Delayed Repeaters, and Switchers. Sample and coupon customers were 45% more likely to repurchase within 30 days. Built a Power BI dashboard adopted by 200+ users across the analytics team.</p>
             <div class="hl-tags">
-              <span class="hl-tag">Tableau</span><span class="hl-tag">SQL</span>
-              <span class="hl-tag">Compliance Analytics</span><span class="hl-tag">RCA</span><span class="hl-tag">Customer Experience</span>
+              <span class="hl-tag">Power BI</span><span class="hl-tag">Python EDA</span><span class="hl-tag">SQL</span>
+              <span class="hl-tag">Hook Model</span><span class="hl-tag">Cohort Analysis</span><span class="hl-tag">CPG</span>
             </div>
           </div>
-          <div class="hl-result-panel">
-            <div class="hl-figure">40%</div>
-            <div class="hl-result-label">Of all complaints traced to top 3 fixable system issues</div>
+          <div class="hl-right">
+            <div class="hl-right-top">
+              <div class="hl-right-label">In the lab</div>
+              <div class="hl-right-pills">
+                <span class="hl-right-pill">Power BI</span><span class="hl-right-pill">Python</span><span class="hl-right-pill">NotebookLM</span>
+              </div>
+            </div>
+            <p class="hl-right-summary">Hook Model applied to travel rebooking behavior for a leading online travel platform — segment analysis using public travel data. Audio deep-dive generated via Gemini NotebookLM for hiring managers to listen on commute.</p>
+            <span class="hl-right-link">Coming soon ↗</span>
           </div>
         </div>
-        <div class="hl-companion">
-          <div class="hl-companion-label">Companion</div>
-          <div class="hl-companion-skill">Looker Studio Report</div>
-          <div class="hl-companion-badge">In the lab</div>
+      </div>
+    </div>
+
+    <div class="highlight-card" id="acc7">
+      <div class="highlight-header" onclick="toggleAcc('acc7')">
+        <div class="hl-num">07</div>
+        <div class="hl-title-block">
+          <div class="hl-domain">Incentive Design · Collections Strategy · FinTech</div>
+          <div class="hl-title">Agent Incentive Optimization: Weighted Rank Model Driving $6M</div>
+        </div>
+        <div class="hl-header-pills">
+          <span class="hl-tool-pill">SQL</span><span class="hl-tool-pill">Python</span><span class="hl-tool-pill">Claude Artifact</span>
+          <span class="hl-wip">In the lab</span>
+        </div>
+        <div class="hl-toggle"><span class="hl-arrow">↓</span></div>
+      </div>
+      <div class="highlight-body">
+        <div class="hl-body-grid">
+          <div class="hl-left">
+            <p class="hl-desc">The existing incentive structure rewarded total balance volume only — so agents chased easy accounts and ignored high-delinquency buckets. I redesigned the framework using a weighted rank model: Balance Moved (70%) + Buckets Cured (30%), with higher delinquency buckets (B4, B5) earning more points. Top 70% of agents eligible, with a 70/30 bonus split.</p>
+            <div class="hl-bullets">
+              <div class="hl-bullet">Redesign shifted agent focus to B3+ delinquency buckets — highest recovery opportunity</div>
+              <div class="hl-bullet">$6M incremental balances moved from segments that were previously deprioritized</div>
+            </div>
+            <div class="hl-tags">
+              <span class="hl-tag">SQL</span><span class="hl-tag">Python</span><span class="hl-tag">Tableau</span>
+              <span class="hl-tag">Incentive Design</span><span class="hl-tag">Delinquency Analytics</span><span class="hl-tag">Rank Modeling</span>
+            </div>
+          </div>
+          <div class="hl-right">
+            <div class="hl-right-top">
+              <div class="hl-right-label">In the lab</div>
+              <div class="hl-right-pills">
+                <span class="hl-right-pill">Python</span><span class="hl-right-pill">Tableau</span><span class="hl-right-pill">Claude Artifact</span>
+              </div>
+            </div>
+            <p class="hl-right-summary">Interactive incentive rank calculator built as a Claude Artifact — input agent performance data, toggle the 70/30 weighting, and see rank shifts live. Visitors interact with the actual model logic.</p>
+            <span class="hl-right-link">Coming soon ↗</span>
+          </div>
         </div>
       </div>
     </div>
@@ -896,9 +941,11 @@ function toggleAcc(id) {
     setTimeout(() => { if (projectsEyebrow) projectsEyebrow.classList.add('revealed'); }, 0);
     setTimeout(() => { if (projectsH2) projectsH2.classList.add('revealed'); }, 120);
     setTimeout(() => { if (projectsIntro) projectsIntro.classList.add('revealed'); }, 240);
+    const pill = document.getElementById('labPill');
+    setTimeout(() => { if (pill) pill.classList.add('revealed'); }, 360);
     // Cards stagger in one by one after the intro
     highlightCards.forEach((card, i) => {
-      setTimeout(() => card.classList.add('revealed'), 360 + i * 120);
+      setTimeout(() => card.classList.add('revealed'), 480 + i * 120);
     });
   };
 
