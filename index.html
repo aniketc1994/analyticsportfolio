@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aniket Chavan — Analytics Portfolio</title>
+<meta name="description" content="Aniket Chavan — Senior Analytics Manager in Seattle, WA. 8 years in FinTech, CPG & Healthcare analytics. $50M in collections impact, $1.4M WFM savings, 98% reporting automation. Open to Analytics Manager, BIE, and BIE Manager roles.">
+<meta name="keywords" content="analytics manager, BIE, business intelligence engineer, Tableau, SQL, Python, FinTech analytics, Seattle, collections analytics, workforce planning">
+<title>Aniket Chavan — Senior Analytics Manager · Seattle, WA</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -32,17 +34,63 @@ nav {
   display: flex; align-items: center; justify-content: space-between;
 }
 .nav-logo {
-  font-size: 15px; font-weight: 600; color: var(--apple-text);
-  text-decoration: none; letter-spacing: -0.01em;
+  font-size: 15px; font-weight: 700; color: var(--apple-text);
+  text-decoration: none; letter-spacing: -0.02em; font-family: 'Inter', sans-serif;
 }
 .nav-links { display: flex; gap: 28px; list-style: none; }
 .nav-links a { font-size: 12px; font-weight: 400; color: var(--apple-secondary); text-decoration: none; transition: color 0.2s; }
 .nav-links a:hover { color: var(--apple-text); }
 
+/* HAMBURGER — mobile only */
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 6px; background: none; border: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-hamburger span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--apple-text); border-radius: 1px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* DRAWER */
+.nav-drawer {
+  display: none; position: fixed;
+  top: 44px; left: 0; right: 0; z-index: 99;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 0.5px solid var(--apple-border-light);
+  flex-direction: column;
+}
+.nav-drawer.open { display: flex; }
+.nav-drawer a {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 15px 20px;
+  font-size: 15px; font-weight: 400; color: var(--apple-text);
+  text-decoration: none; border-bottom: 0.5px solid var(--apple-border-light);
+  transition: background 0.15s;
+}
+.nav-drawer a:last-child { border-bottom: none; }
+.nav-drawer a:active { background: var(--apple-bg2); }
+.nav-drawer a.drawer-resume { color: var(--apple-blue); font-weight: 500; }
+.nav-drawer-arrow { font-size: 12px; color: var(--apple-tertiary); }
+
 /* HERO */
-.hero { padding-top: 52px; background: var(--apple-bg); border-bottom: 0.5px solid transparent; transition: border-color 0.5s ease; }
+.hero { padding-top: 52px; background: var(--apple-bg); border-bottom: 0.5px solid transparent; transition: border-color 0.5s ease; position: relative; }
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 52px; left: 0; right: 0;
+  height: 320px;
+  background: radial-gradient(ellipse 60% 40% at 20% 50%, rgba(0,113,227,0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-inner { padding: 64px 0 48px 48px; position: relative; z-index: 1; }
 .hero.border-visible { border-bottom-color: var(--apple-border-light); }
-.hero-inner { padding: 64px 0 48px 48px; }
 
 /* IMPACT STRIP — scroll timeline */
 .impact-strip-wrap {
@@ -63,14 +111,13 @@ nav {
 
 /* each piece starts invisible */
 .impact-num {
-  font-size: 36px; font-weight: 700; letter-spacing: -0.03em;
+  font-size: 42px; font-weight: 800; letter-spacing: -0.04em;
   color: var(--apple-text); line-height: 1; margin-bottom: 8px;
-  transition: color 0.2s;
   opacity: 0; transform: translateY(10px);
   transition: opacity 0.45s ease, transform 0.45s ease, color 0.2s;
 }
 .impact-desc {
-  font-size: 13px; color: var(--apple-secondary); line-height: 1.5;
+  font-size: 12.5px; color: var(--apple-secondary); line-height: 1.5;
   opacity: 0; transform: translateY(8px);
   transition: opacity 0.45s ease, transform 0.45s ease;
 }
@@ -321,6 +368,10 @@ h2 em { font-style: italic; color: var(--apple-blue); font-family: 'DM Serif Dis
 @keyframes heroFadeUp {
   to { opacity: 1; transform: translateY(0); }
 }
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
 
 /* SCROLL REVEAL — all sections */
 .scroll-reveal {
@@ -366,8 +417,15 @@ footer {
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 
 /* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; height: 44px; }
+  .hero { padding-top: 44px; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .hero-avail-badge { display: none; }
+  .hero-scroll-hint { display: none !important; }
+}
 @media (max-width: 900px) {
-  nav { padding: 0 20px; }
   .hero-inner { padding: 48px 24px 0; }
   .metrics-strip { grid-template-columns: 1fr 1fr; }
   section, #approach { padding: 56px 24px; }
@@ -394,21 +452,35 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a href="#home" class="nav-logo">Aniket Chavan <span style="font-weight:300;color:#b0b0b5;margin:0 6px;">·</span> <span style="font-weight:400;color:#6e6e73;">San Francisco · Seattle · Remote</span></a>
+  <a href="#home" class="nav-logo">Aniket Chavan <span style="font-weight:300;color:#b0b0b5;margin:0 6px;">·</span> <span style="font-weight:400;color:#6e6e73;">Seattle, WA</span></a>
   <ul class="nav-links">
     <li><a href="#projects">Career Highlights</a></li>
     <li><a href="#about">Work Experience</a></li>
     <li><a href="#approach">Approach</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="https://github.com/aniketc1994/analyticsportfolio/raw/main/Aniket_Arun_Chavan_Resume.pdf" target="_blank" style="color:var(--apple-blue);font-weight:500;">↓ Résumé</a></li>
   </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="navDrawer">
+  <a href="#projects" class="drawer-link">Career Highlights <span class="nav-drawer-arrow">→</span></a>
+  <a href="#about" class="drawer-link">Work Experience <span class="nav-drawer-arrow">→</span></a>
+  <a href="#approach" class="drawer-link">Approach <span class="nav-drawer-arrow">→</span></a>
+  <a href="#contact" class="drawer-link">Contact <span class="nav-drawer-arrow">→</span></a>
+  <a href="https://github.com/aniketc1994/analyticsportfolio/raw/main/Aniket_Arun_Chavan_Resume.pdf" target="_blank" class="drawer-resume">↓ Download Résumé <span class="nav-drawer-arrow">→</span></a>
+</div>
 
 <!-- HERO -->
 <div class="hero" id="home">
   <div class="hero-inner">
-    <p class="hero-eyebrow">Analytics Manager · <span class="js-exp-years">8</span> Years · FinTech, CPG & Healthcare</p>
-    <h1>Data that <em>drives</em> decisions.</h1>
+    <p class="hero-eyebrow">Analytics Manager · <span class="js-exp-years">8</span> Years · FinTech, CPG & Healthcare · Seattle, WA</p>
+    <h1>Driving <em>decisions</em>,<br>not dashboards.</h1>
     <p class="hero-desc">I build end-to-end analytics systems — from SQL pipelines and predictive models to executive dashboards that actually change what leadership does next. Specializing in collections, workforce, and performance analytics for U.S. lending & banking.</p>
+
     <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
       <div class="hero-ctas" id="heroCtas" style="opacity:0;transform:translateY(10px);transition:opacity 0.5s ease,transform 0.5s ease;display:flex;align-items:center;gap:10px;">
         <a href="#projects" class="btn-primary" id="viewProjectsBtn">View Projects</a>
@@ -432,7 +504,7 @@ footer {
     <div class="impact-strip">
       <div class="impact-cell">
         <div class="impact-num" id="in1">$50M</div>
-        <div class="impact-desc" id="id1">Incremental balances recovered via collections analytics</div>
+        <div class="impact-desc" id="id1">Incremental balances moved via collections analytics & segmentation</div>
       </div>
       <div class="impact-cell">
         <div class="impact-num" id="in2">98%</div>
@@ -440,11 +512,11 @@ footer {
       </div>
       <div class="impact-cell">
         <div class="impact-num" id="in3">$1.4M</div>
-        <div class="impact-desc" id="id3">Annualized savings from ML-powered workforce optimization</div>
+        <div class="impact-desc" id="id3">Annualized savings from AI-informed workforce capacity optimization</div>
       </div>
       <div class="impact-cell">
-        <div class="impact-num" id="in4">100+</div>
-        <div class="impact-desc" id="id4">Dashboard users across executive & associate tiers</div>
+        <div class="impact-num" id="in4">$6M</div>
+        <div class="impact-desc" id="id4">Incremental balances from agent incentive redesign & delinquency targeting</div>
       </div>
     </div>
   </div>
@@ -453,8 +525,8 @@ footer {
 <!-- CAREER HIGHLIGHTS -->
 <section id="projects">
   <p class="section-eyebrow">Career Highlights</p>
-  <h2>Analytics that moved the needle.</h2>
-  <p class="section-intro">Each project below is built from real analytical work in U.S. FinTech lending and operations. Every number is actual impact delivered.</p>
+  <h2>Analytics that moved<br>the <em>needle</em>.</h2>
+  <p class="section-intro">Each project below is built from real analytical work in U.S. FinTech lending and operations. Every number is actual impact delivered — no rounding up, no rounding out.</p>
   <div id="labPill" class="scroll-reveal" style="margin-bottom:28px;">
     <div style="display:inline-flex;align-items:center;gap:7px;background:var(--apple-blue-light);border:0.5px solid #b5d4f4;border-radius:980px;padding:5px 14px 5px 10px;white-space:nowrap;">
       <span style="font-size:12px;">⚗</span>
@@ -734,16 +806,21 @@ footer {
 <!-- WORK EXPERIENCE -->
 <section id="about">
   <p class="section-eyebrow">Work Experience</p>
-  <h2><span class="js-exp-years">8</span> years. Three industries. One discipline.</h2>
+  <h2><span class="js-exp-years">8</span> years.<br>Three industries. One discipline.</h2>
   <p class="section-intro">Senior analytics practitioner with deep roots in FinTech lending, collections, and workforce operations — and a track record of turning messy data into decisions that stick.</p>
   <div class="about-grid">
     <div class="timeline">
       <div class="tl-item fade-up">
         <div class="tl-dot"></div>
-        <div class="tl-period">June 2022 — Present</div>
+        <div class="tl-period">Jun 2022 — Present · <span style="color:rgba(255,255,255,0.25);font-weight:400;">Promoted onshore Oct 2024</span></div>
         <div class="tl-role">Senior Manager</div>
-        <div class="tl-company">EXL Analytics · FinTech · Gurgaon → San Francisco</div>
-        <div class="tl-note">Operations, workforce & performance analytics for a U.S. fintech lending client. AI implementation across WFM capacity planning, call reduction, and collections optimization. Game Changer Award · Pioneer Award.</div>
+        <div class="tl-company">EXL Analytics · FinTech · Seattle, WA</div>
+        <div class="tl-note">Operations, workforce & performance analytics for a U.S. fintech lending client. AI-informed implementation across WFM capacity planning, call reduction, and collections optimization.
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;">
+          <span style="font-size:10px;font-weight:600;padding:3px 10px;background:rgba(110,181,255,0.12);border:0.5px solid rgba(110,181,255,0.25);color:#6eb5ff;border-radius:980px;">⭐ Game Changer Award</span>
+          <span style="font-size:10px;font-weight:600;padding:3px 10px;background:rgba(110,181,255,0.12);border:0.5px solid rgba(110,181,255,0.25);color:#6eb5ff;border-radius:980px;">⭐ Pioneer Award</span>
+        </div>
+        </div>
       </div>
       <div class="tl-item fade-up">
         <div class="tl-dot"></div>
@@ -797,7 +874,7 @@ footer {
 <!-- APPROACH -->
 <section id="approach">
   <p class="section-eyebrow">How I Work</p>
-  <h2>Analytics as a <em>system</em>, not a report.</h2>
+  <h2>Analytics as a <em>system</em>,<br>not a report.</h2>
   <p class="section-intro">Every project follows the same discipline — start with the business question, not the data.</p>
   <div class="approach-strip">
     <div class="approach-card fade-up">
@@ -822,7 +899,7 @@ footer {
 <section id="contact">
   <div class="contact-left">
     <p class="section-eyebrow">Let's Connect</p>
-    <h2>Good work starts with the right conversation.</h2>
+    <h2>Good work starts<br>with the right conversation.</h2>
     <div class="contact-links">
       <a href="mailto:aniketc1994@gmail.com" class="contact-link fade-up">
         <div class="contact-link-icon">✉</div>
@@ -843,15 +920,19 @@ footer {
     </div>
   </div>
   <div class="contact-right">
-    <div class="contact-manifesto">If the work is interesting and the analytics problem is real, I'm always open to a conversation.</div>
-    <p class="contact-note">Whether you're building something from scratch, rethinking how your team uses data, or just want a second pair of eyes on a thorny BI problem — reach out. Good analytics conversations are always worth having.</p>
+    <div class="contact-manifesto">"If the work is interesting and the analytics problem is real, I'm always open to a conversation."</div>
+    <p class="contact-note">Whether you're building something from scratch, rethinking how your team uses data, or just want a second pair of eyes on a thorny BI problem — reach out. I'm actively exploring senior analytics, BIE, and BIE Manager roles in Seattle. Good analytics conversations are always worth having.</p>
+    <div style="margin-top:28px;display:inline-flex;align-items:center;gap:6px;background:#f0f9f0;border:0.5px solid #b8e0b8;border-radius:980px;padding:5px 14px;">
+      <span style="width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block;animation:pulse 2s ease infinite;"></span>
+      <span style="font-size:11px;font-weight:500;color:#16a34a;">Actively searching · Target start: Aug 2026</span>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <span>Aniket Chavan · Analytics Portfolio</span>
-  <span>San Francisco · Seattle · Remote · © 2026</span>
+  <span>Seattle, WA · Open to Hybrid & Remote · © 2026</span>
 </footer>
 
 <script>
@@ -862,18 +943,23 @@ window.scrollTo(0, 0);
 document.getElementById('viewProjectsBtn').addEventListener('click', function(e) {
   e.preventDefault();
   if (window.bypassMetrics) window.bypassMetrics();
-  setTimeout(() => {
-    document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
-  }, 420);
+  // Small timeout lets revealProjectsEyebrow fire before scroll
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
 });
 
 // Get in Touch — same bypass, scroll to contact
 document.getElementById('getInTouchBtn').addEventListener('click', function(e) {
   e.preventDefault();
   if (window.bypassMetrics) window.bypassMetrics();
-  setTimeout(() => {
-    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-  }, 420);
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
 });
 (function() {
   const ctas = document.getElementById('heroCtas');
@@ -884,16 +970,23 @@ document.getElementById('getInTouchBtn').addEventListener('click', function(e) {
     if (ctas) { ctas.style.opacity = '1'; ctas.style.transform = 'translateY(0)'; }
   }
   window.revealCtas = revealCtas;
-  window.addEventListener('wheel', revealCtas, { passive: true, once: true });
-  window.addEventListener('touchmove', revealCtas, { passive: true, once: true });
+  // On mobile, reveal immediately — no wheel event to wait for
+  if (window.innerWidth < 768) {
+    revealCtas();
+  } else {
+    window.addEventListener('wheel', revealCtas, { passive: true, once: true });
+    window.addEventListener('touchmove', revealCtas, { passive: true, once: true });
+  }
 })();
 
 // Scroll hint click — bypass metrics
 document.getElementById('heroScrollHint').addEventListener('click', function() {
   if (window.bypassMetrics) window.bypassMetrics();
-  setTimeout(() => {
-    document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
-  }, 420);
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
 });
 (function() {
   const anchor = new Date('2022-06-06');
@@ -977,21 +1070,16 @@ function toggleAcc(id) {
 })();
 (function() {
   const strip = document.getElementById('impactStrip');
-  const connector = document.getElementById('impactConnector');
   const items = ['in1','id1','in2','id2','in3','id3','in4','id4'].map(id => document.getElementById(id));
   if (!strip) return;
 
-  let hijacking = false;
-  let progress = 0;
-  let released = false;
-  let lockedScrollY = 0;
+  const isMobile = window.innerWidth < 768;
 
   // Draw trend line proportionally
   const trendPath = document.getElementById('impactTrendPath');
-  const totalLength = 1060; // approximate path length
+  const totalLength = 1060;
   function drawLine(p) {
-    const offset = totalLength * (1 - p);
-    trendPath.style.strokeDashoffset = offset;
+    trendPath.style.strokeDashoffset = totalLength * (1 - p);
     trendPath.style.strokeDasharray = totalLength;
   }
 
@@ -1004,7 +1092,6 @@ function toggleAcc(id) {
       if (p >= threshold) el.classList.add('show');
       else el.classList.remove('show');
     });
-    // Show cell border when its number is visible
     cells.forEach((cell, i) => {
       const numThreshold = (i * 2 + 1) / (items.length + 1);
       if (p >= numThreshold) cell.classList.add('cell-visible');
@@ -1012,24 +1099,46 @@ function toggleAcc(id) {
     });
   }
 
-  // Check if strip is in viewport
+  // Shared complete function — called by bypass, mobile init, and desktop completion
+  function completeSequence() {
+    drawLine(1);
+    revealItems(1);
+    document.getElementById('home').classList.add('border-visible');
+    document.getElementById('projects').classList.add('border-visible');
+    if (window.revealProjectsEyebrow) window.revealProjectsEyebrow();
+    if (window.revealCtas) window.revealCtas();
+  }
+
+  // ── MOBILE: skip hijack entirely, show everything immediately ──
+  if (isMobile) {
+    completeSequence();
+
+    window.bypassMetrics = function() { completeSequence(); };
+
+    // Initial state — fully visible
+    drawLine(1);
+    revealItems(1);
+    return; // stop here — no desktop hijack code runs
+  }
+
+  // ── DESKTOP ONLY from here ──
+  let hijacking = false;
+  let progress = 0;
+  let released = false;
+  let lockedScrollY = 0;
+
   function stripInView() {
     const rect = strip.getBoundingClientRect();
     return rect.top <= window.innerHeight * 0.75 && rect.bottom >= 0;
   }
 
-  // If page reloads with strip already below viewport top, auto-complete
+  // If page reloads with strip already scrolled past, auto-complete
   (function checkInitial() {
     const rect = strip.getBoundingClientRect();
     if (rect.top < 0) {
-      // Strip is already above viewport — user scrolled past it, skip hijack
       released = true;
       progress = 1;
-      drawLine(1);
-      revealItems(1);
-      document.getElementById('home').classList.add('border-visible');
-      document.getElementById('projects').classList.add('border-visible');
-      if (window.revealProjectsEyebrow) window.revealProjectsEyebrow();
+      completeSequence();
     }
   })();
 
@@ -1039,75 +1148,36 @@ function toggleAcc(id) {
     if (released) return;
     const scrollingDown = window.scrollY > lastScrollY;
     lastScrollY = window.scrollY;
-
-    // Only hijack when scrolling DOWN into the strip
     if (!hijacking && stripInView() && scrollingDown) {
       hijacking = true;
       lockedScrollY = window.scrollY;
       document.body.style.overflow = 'hidden';
     }
-
     if (!hijacking) return;
-
-    // Restore scroll position to locked position
     window.scrollTo(0, lockedScrollY);
   }, { passive: false });
 
-  // Use wheel to drive progress
   window.addEventListener('wheel', function(e) {
     if (released) return;
     const scrollingDown = e.deltaY > 0;
-
-    // Only engage if scrolling down into strip, or already hijacking
     if (!hijacking && !stripInView()) return;
     if (!hijacking && stripInView() && !scrollingDown) return;
-
     if (!hijacking && stripInView() && scrollingDown) {
       hijacking = true;
       lockedScrollY = window.scrollY;
       document.body.style.overflow = 'hidden';
     }
-
     e.preventDefault();
-
-    // Normalize: target ~800px of total scroll to complete sequence
-    // deltaY varies: trackpad ~3-10px per event, mouse wheel ~100-120px per tick
     const normalized = Math.min(Math.abs(e.deltaY), 120) / 120;
     const delta = e.deltaY > 0 ? normalized * 0.04 : -(normalized * 0.04);
     progress = Math.min(1, Math.max(0, progress + delta));
-
-    drawLine(progress);
-    revealItems(progress);
-
-    if (progress >= 1) {
-      released = true;
-      hijacking = false;
-      document.body.style.overflow = '';
-      if (window.revealProjectsEyebrow) window.revealProjectsEyebrow();
-      document.getElementById('home').classList.add('border-visible');
-      if (window.revealCtas) window.revealCtas();
-    }
-    if (progress <= 0 && released) {
-      // don't re-hijack going back up
-    }
-  }, { passive: false });
-
-  // Touch support
-  let touchStartY = 0;
-  window.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; }, { passive: true });
-  window.addEventListener('touchmove', function(e) {
-    if (released || !hijacking) return;
-    e.preventDefault();
-    const dy = touchStartY - e.touches[0].clientY;
-    touchStartY = e.touches[0].clientY;
-    const delta = dy > 0 ? 0.01 : -0.01;
-    progress = Math.min(1, Math.max(0, progress + delta));
     drawLine(progress);
     revealItems(progress);
     if (progress >= 1) {
       released = true;
       hijacking = false;
       document.body.style.overflow = '';
+      completeSequence();
     }
   }, { passive: false });
 
@@ -1117,17 +1187,36 @@ function toggleAcc(id) {
     hijacking = false;
     progress = 1;
     document.body.style.overflow = '';
-    drawLine(1);
-    revealItems(1);
-    document.getElementById('home').classList.add('border-visible');
-    document.getElementById('projects').classList.add('border-visible');
-    if (window.revealProjectsEyebrow) window.revealProjectsEyebrow();
-    if (window.revealCtas) window.revealCtas();
+    completeSequence();
   };
 
-  // Initial state
+  // Initial state — hidden
   drawLine(0);
   revealItems(0);
+})();
+
+// ── HAMBURGER MENU ──
+(function() {
+  const btn = document.getElementById('navHamburger');
+  const drawer = document.getElementById('navDrawer');
+  if (!btn || !drawer) return;
+
+  btn.addEventListener('click', function() {
+    const isOpen = drawer.classList.contains('open');
+    drawer.classList.toggle('open');
+    btn.classList.toggle('open');
+    btn.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+  });
+
+  // Close drawer when any link is tapped + bypass metrics so section is visible
+  drawer.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      drawer.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-label', 'Open menu');
+      if (window.bypassMetrics) window.bypassMetrics();
+    });
+  });
 })();
 </script>
 </body>
