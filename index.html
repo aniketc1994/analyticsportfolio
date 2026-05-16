@@ -424,6 +424,9 @@ footer {
   .nav-hamburger { display: flex; }
   .hero-avail-badge { display: none; }
   .hero-scroll-hint { display: none !important; }
+  /* Force 2x2 grid on mobile */
+  .metrics-strip { grid-template-columns: 1fr 1fr !important; }
+  .impact-strip { grid-template-columns: 1fr 1fr !important; }
 }
 @media (max-width: 900px) {
   .hero-inner { padding: 48px 24px 0; }
@@ -478,7 +481,7 @@ footer {
 <div class="hero" id="home">
   <div class="hero-inner">
     <p class="hero-eyebrow">Analytics Manager · <span class="js-exp-years">8</span> Years · FinTech, CPG & Healthcare · Seattle, WA</p>
-    <h1>Driving <em>decisions</em>,<br>not dashboards.</h1>
+    <h1>Driving <em>decisions</em>, not dashboards.</h1>
     <p class="hero-desc">I build end-to-end analytics systems — from SQL pipelines and predictive models to executive dashboards that actually change what leadership does next. Specializing in collections, workforce, and performance analytics for U.S. lending & banking.</p>
 
     <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
@@ -494,7 +497,7 @@ footer {
       </div>
     </div>
   </div>
-  <div class="impact-strip-wrap" id="impactStrip">
+  <div class="impact-strip-wrap fade-up" id="impactStrip">
     <div class="impact-connector" id="impactConnector">
       <svg viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true">
         <path class="impact-trend-path" id="impactTrendPath"
@@ -525,7 +528,7 @@ footer {
 <!-- CAREER HIGHLIGHTS -->
 <section id="projects">
   <p class="section-eyebrow">Career Highlights</p>
-  <h2>Analytics that moved<br>the <em>needle</em>.</h2>
+  <h2>Analytics that moved the <em>needle</em>.</h2>
   <p class="section-intro">Each project below is built from real analytical work in U.S. FinTech lending and operations. Every number is actual impact delivered — no rounding up, no rounding out.</p>
   <div id="labPill" class="scroll-reveal" style="margin-bottom:28px;">
     <div style="display:inline-flex;align-items:center;gap:7px;background:var(--apple-blue-light);border:0.5px solid #b5d4f4;border-radius:980px;padding:5px 14px 5px 10px;white-space:nowrap;">
@@ -806,7 +809,7 @@ footer {
 <!-- WORK EXPERIENCE -->
 <section id="about">
   <p class="section-eyebrow">Work Experience</p>
-  <h2><span class="js-exp-years">8</span> years.<br>Three industries. One discipline.</h2>
+  <h2><span class="js-exp-years">8</span> years. Three industries. One discipline.</h2>
   <p class="section-intro">Senior analytics practitioner with deep roots in FinTech lending, collections, and workforce operations — and a track record of turning messy data into decisions that stick.</p>
   <div class="about-grid">
     <div class="timeline">
@@ -874,7 +877,7 @@ footer {
 <!-- APPROACH -->
 <section id="approach">
   <p class="section-eyebrow">How I Work</p>
-  <h2>Analytics as a <em>system</em>,<br>not a report.</h2>
+  <h2>Analytics as a <em>system</em>, not a report.</h2>
   <p class="section-intro">Every project follows the same discipline — start with the business question, not the data.</p>
   <div class="approach-strip">
     <div class="approach-card fade-up">
@@ -899,7 +902,7 @@ footer {
 <section id="contact">
   <div class="contact-left">
     <p class="section-eyebrow">Let's Connect</p>
-    <h2>Good work starts<br>with the right conversation.</h2>
+    <h2>Good work starts with the right conversation.</h2>
     <div class="contact-links">
       <a href="mailto:aniketc1994@gmail.com" class="contact-link fade-up">
         <div class="contact-link-icon">✉</div>
@@ -1064,6 +1067,23 @@ function toggleAcc(id) {
 
   targets.forEach(el => revealObs.observe(el));
 })();
+
+// ── FADE-UP OBSERVER (impact strip + career highlights header) ──
+(function() {
+  const fadeEls = document.querySelectorAll('.fade-up');
+  if (!fadeEls.length) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        // stagger siblings slightly
+        const delay = Array.from(fadeEls).indexOf(e.target) * 80;
+        setTimeout(() => e.target.classList.add('visible'), delay);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => obs.observe(el));
+})();
 (function() {
   const strip = document.getElementById('impactStrip');
   const items = ['in1','id1','in2','id2','in3','id3','in4','id4'].map(id => document.getElementById(id));
@@ -1107,6 +1127,9 @@ function toggleAcc(id) {
 
   // ── MOBILE: skip hijack entirely, show everything immediately ──
   if (isMobile) {
+    // Mark fade-up strip visible immediately on mobile
+    const stripEl = document.getElementById('impactStrip');
+    if (stripEl) stripEl.classList.add('visible');
     completeSequence();
 
     window.bypassMetrics = function() { completeSequence(); };
