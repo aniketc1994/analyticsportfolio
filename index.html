@@ -37,6 +37,10 @@ nav {
   font-size: 15px; font-weight: 700; color: var(--apple-text);
   text-decoration: none; letter-spacing: -0.02em; font-family: 'Inter', sans-serif;
 }
+.nav-logo .nav-sub {
+  font-size: 12px; font-weight: 400; color: var(--apple-secondary);
+  letter-spacing: 0; font-family: 'Inter', sans-serif;
+}
 .nav-links { display: flex; gap: 28px; list-style: none; }
 .nav-links a { font-size: 12px; font-weight: 400; color: var(--apple-secondary); text-decoration: none; transition: color 0.2s; }
 .nav-links a:hover { color: var(--apple-text); }
@@ -124,25 +128,48 @@ nav {
 .impact-num.show { opacity: 1; transform: translateY(0); }
 .impact-desc.show { opacity: 1; transform: translateY(0); }
 
-/* Rising trend line */
-.impact-connector {
-  position: absolute; bottom: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none; z-index: 0; overflow: hidden;
+/* Progress bar — hidden until first dot activates */
+.impact-dots {
+  border-top: 0.5px solid var(--apple-border-light);
+  background: var(--apple-bg2);
+  padding: 14px 0;
+  position: relative;
+  opacity: 0;
+  transition: opacity 0.35s ease;
 }
-.impact-connector svg {
-  position: absolute; bottom: 0; left: 0;
-  width: 100%; height: 100%;
+.impact-dots.visible { opacity: 1; }
+.impact-dots-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+  z-index: 2;
 }
-.impact-trend-path {
-  fill: none;
-  stroke: var(--apple-blue);
-  stroke-width: 1.5;
-  opacity: 0.2;
-  stroke-dasharray: 2000;
-  stroke-dashoffset: 2000;
-  stroke-linecap: round;
-  transition: stroke-dashoffset 0s;
+.impact-dot-cell { display: flex; justify-content: center; align-items: center; }
+.impact-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: transparent; border: 1.5px solid transparent;
+  transition: background 0.35s ease, border-color 0.35s ease, transform 0.2s ease;
+  position: relative; z-index: 2;
+}
+.impact-dot.active {
+  background: var(--apple-blue);
+  border-color: var(--apple-blue);
+  transform: scale(1.25);
+}
+/* Line spans from center of dot1 to center of dot4 (12.5% → 87.5%) */
+.impact-track {
+  position: absolute;
+  top: 50%; left: 12.5%; right: 12.5%;
+  height: 1.5px;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+.impact-track-bg { display: none; }
+.impact-track-fill {
+  position: absolute; top: 0; left: 0; bottom: 0;
+  background: var(--apple-blue);
+  width: 0%;
+  transition: width 0.25s ease;
 }
 .hero-eyebrow {
   font-size: 13px; font-weight: 500; letter-spacing: 0.06em;
@@ -257,6 +284,7 @@ h2 em { font-style: italic; color: var(--apple-blue); font-family: 'DM Serif Dis
 #about h2 { color: #f5f5f7; }
 #about .section-intro { color: #98989d; }
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.about-grid > div:last-child { padding-right: 48px; }
 
 /* Timeline */
 .timeline { position: relative; padding-left: 28px; }
@@ -416,17 +444,37 @@ footer {
 .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 
+/* Mobile resume nav link */
+.nav-mobile-resume {
+  display: none;
+  font-size: 12px; font-weight: 500; color: var(--apple-blue);
+  background: var(--apple-blue-light); border: 0.5px solid rgba(0,113,227,0.25);
+  border-radius: 980px; padding: 5px 12px; text-decoration: none;
+  white-space: nowrap;
+}
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  nav { padding: 0 20px; height: 44px; }
+  nav { padding: 0 16px; height: 44px; }
   .hero { padding-top: 44px; }
   .nav-links { display: none; }
-  .nav-hamburger { display: flex; }
+  .nav-hamburger { display: none !important; }
+  .nav-mobile-resume { display: inline-flex; align-items: center; }
+  /* Hide location from logo on mobile — just name */
+  .nav-logo span { display: none; }
   .hero-avail-badge { display: none; }
   .hero-scroll-hint { display: none !important; }
   /* Force 2x2 grid on mobile */
   .metrics-strip { grid-template-columns: 1fr 1fr !important; }
   .impact-strip { grid-template-columns: 1fr 1fr !important; }
+  /* Hide step dots on mobile */
+  .impact-dots { display: none !important; }
+  /* Ensure hero animations fire on mobile */
+  .hero-eyebrow, .hero-inner h1, .hero-desc, .hero-ctas {
+    animation-duration: 0.5s;
+  }
+  /* Ensure career highlights scroll-reveal fires on mobile */
+  .scroll-reveal { transition-duration: 0.4s; }
 }
 @media (max-width: 900px) {
   .hero-inner { padding: 48px 24px 0; }
@@ -455,7 +503,7 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a href="#home" class="nav-logo">Aniket Chavan <span style="font-weight:300;color:#b0b0b5;margin:0 6px;">·</span> <span style="font-weight:400;color:#6e6e73;">Seattle, WA</span></a>
+  <a href="#home" class="nav-logo">Aniket Chavan <span style="font-weight:300;color:#b0b0b5;margin:0 6px;">·</span> <span class="nav-sub">San Francisco · Seattle · Open to Remote</span></a>
   <ul class="nav-links">
     <li><a href="#projects">Career Highlights</a></li>
     <li><a href="#about">Work Experience</a></li>
@@ -463,26 +511,22 @@ footer {
     <li><a href="#contact">Contact</a></li>
     <li><a href="https://github.com/aniketc1994/analyticsportfolio/raw/main/Aniket_Arun_Chavan_Resume.pdf" target="_blank" style="color:var(--apple-blue);font-weight:500;">↓ Résumé</a></li>
   </ul>
-  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+  <!-- Mobile: Logo only + Resume link (Option 3) -->
+  <a href="https://github.com/aniketc1994/analyticsportfolio/raw/main/Aniket_Arun_Chavan_Resume.pdf" target="_blank" class="nav-mobile-resume">↓ Résumé</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" style="display:none;">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- MOBILE DRAWER -->
-<div class="nav-drawer" id="navDrawer">
-  <a href="#projects" class="drawer-link">Career Highlights <span class="nav-drawer-arrow">→</span></a>
-  <a href="#about" class="drawer-link">Work Experience <span class="nav-drawer-arrow">→</span></a>
-  <a href="#approach" class="drawer-link">Approach <span class="nav-drawer-arrow">→</span></a>
-  <a href="#contact" class="drawer-link">Contact <span class="nav-drawer-arrow">→</span></a>
-  <a href="https://github.com/aniketc1994/analyticsportfolio/raw/main/Aniket_Arun_Chavan_Resume.pdf" target="_blank" class="drawer-resume">↓ Download Résumé <span class="nav-drawer-arrow">→</span></a>
-</div>
+<!-- MOBILE DRAWER (kept in DOM but unused with Option 3) -->
+<div class="nav-drawer" id="navDrawer"></div>
 
 <!-- HERO -->
 <div class="hero" id="home">
   <div class="hero-inner">
     <p class="hero-eyebrow">Analytics Manager · <span class="js-exp-years">8</span> Years · FinTech, CPG & Healthcare</p>
     <h1>Driving <em>decisions</em>, not dashboards.</h1>
-    <p class="hero-desc">I build end-to-end analytics systems — from SQL pipelines and predictive models to executive dashboards that actually change what leadership does next. Specializing in collections, workforce, and performance analytics for U.S. lending & banking.</p>
+    <p class="hero-desc">I turn complex, messy data into decisions executive leadership can act on. Specializing in collections, workforce, and performance analytics for U.S. lending and banking — with hands-on domain experience across healthcare and CPG.</p>
 
     <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
       <div class="hero-ctas" id="heroCtas" style="opacity:0;transform:translateY(10px);transition:opacity 0.5s ease,transform 0.5s ease;display:flex;align-items:center;gap:10px;">
@@ -498,12 +542,6 @@ footer {
     </div>
   </div>
   <div class="impact-strip-wrap fade-up" id="impactStrip">
-    <div class="impact-connector" id="impactConnector">
-      <svg viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true">
-        <path class="impact-trend-path" id="impactTrendPath"
-          d="M0,90 C100,85 200,75 300,65 C400,55 500,42 600,32 C700,22 800,14 900,8 C950,5 980,3 1000,2"/>
-      </svg>
-    </div>
     <div class="impact-strip">
       <div class="impact-cell">
         <div class="impact-num" id="in1">$50M</div>
@@ -522,6 +560,18 @@ footer {
         <div class="impact-desc" id="id4">Incremental balances from agent incentive redesign & delinquency targeting</div>
       </div>
     </div>
+    <!-- Progress bar -->
+    <div class="impact-dots">
+      <div class="impact-track">
+        <div class="impact-track-fill" id="impactTrackFill"></div>
+      </div>
+      <div class="impact-dots-row">
+        <div class="impact-dot-cell"><div class="impact-dot" id="dot1"></div></div>
+        <div class="impact-dot-cell"><div class="impact-dot" id="dot2"></div></div>
+        <div class="impact-dot-cell"><div class="impact-dot" id="dot3"></div></div>
+        <div class="impact-dot-cell"><div class="impact-dot" id="dot4"></div></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -529,7 +579,7 @@ footer {
 <section id="projects">
   <p class="section-eyebrow">Career Highlights</p>
   <h2>Analytics that moved the <em>needle</em>.</h2>
-  <p class="section-intro">Each project below is built from real analytical work in U.S. FinTech lending and operations. Every number is actual impact delivered — no rounding up, no rounding out.</p>
+  <p class="section-intro">Each project below reflects actual career work — analytics that moved numbers and changed how leadership thought about the business.</p>
   <div id="labPill" class="scroll-reveal" style="margin-bottom:28px;">
     <div style="display:inline-flex;align-items:center;gap:7px;background:var(--apple-blue-light);border:0.5px solid #b5d4f4;border-radius:980px;padding:5px 14px 5px 10px;white-space:nowrap;">
       <span style="font-size:12px;">⚗</span>
@@ -692,7 +742,7 @@ footer {
         <div class="hl-num">05</div>
         <div class="hl-title-block">
           <div class="hl-domain">Workforce Analytics · AI-Informed Capacity Planning</div>
-          <div class="hl-title">AI-Informed WFM & Call Analytics: $1.77M in Combined Savings</div>
+          <div class="hl-title">AI-Informed WFM & Call Analytics: $1.8M in Combined Savings</div>
         </div>
         <div class="hl-header-pills">
           <span class="hl-tool-pill">Python</span><span class="hl-tool-pill">Power BI</span><span class="hl-tool-pill">Claude Artifact</span>
@@ -810,14 +860,14 @@ footer {
 <section id="about">
   <p class="section-eyebrow">Work Experience</p>
   <h2><span class="js-exp-years">8</span> years. Three industries. One discipline.</h2>
-  <p class="section-intro">Senior analytics practitioner with deep roots in FinTech lending, collections, and workforce operations — and a track record of turning messy data into decisions that stick.</p>
+  <p class="section-intro"></p>
   <div class="about-grid">
     <div class="timeline">
       <div class="tl-item fade-up">
         <div class="tl-dot"></div>
         <div class="tl-period">Jun 2022 — Present · <span style="color:rgba(255,255,255,0.25);font-weight:400;">Promoted onshore Oct 2024</span></div>
         <div class="tl-role">Senior Manager</div>
-        <div class="tl-company">EXL Analytics · FinTech · Seattle, WA</div>
+        <div class="tl-company">EXL Analytics · FinTech · San Francisco, CA</div>
         <div class="tl-note">Operations, workforce & performance analytics for a U.S. fintech lending client. AI-informed implementation across WFM capacity planning, call reduction, and collections optimization.
         <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;">
           <span style="font-size:10px;font-weight:600;padding:3px 10px;background:rgba(110,181,255,0.12);border:0.5px solid rgba(110,181,255,0.25);color:#6eb5ff;border-radius:980px;">⭐ Game Changer Award</span>
@@ -832,7 +882,7 @@ footer {
         <div class="tl-company">Fractal Analytics · CPG · Mumbai</div>
         <div class="tl-note">Power BI reporting, demand & shipment analytics, and go-to-market performance tracking for Fortune 500 CPG clients.
         <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;">
-          <span style="font-size:10px;font-weight:600;padding:3px 10px;background:rgba(110,181,255,0.12);border:0.5px solid rgba(110,181,255,0.25);color:#6eb5ff;border-radius:980px;">⭐ Best Insight Award</span>
+          <span style="font-size:10px;font-weight:600;padding:3px 10px;background:rgba(110,181,255,0.12);border:0.5px solid rgba(110,181,255,0.25);color:#6eb5ff;border-radius:980px;">⭐ Client Appreciation — Initiative Tracker · 200 users</span>
         </div>
         </div>
       </div>
@@ -841,7 +891,11 @@ footer {
         <div class="tl-period">June 2016 — May 2019</div>
         <div class="tl-role">Software Engineer</div>
         <div class="tl-company">CitiusTech · Healthcare · Mumbai</div>
-        <div class="tl-note">Finance & HR reporting modernization, Patient-to-Payment analytics, and Tableau/Power BI dashboard optimization across healthcare datasets.</div>
+        <div class="tl-note">Finance & HR reporting modernization, Patient-to-Payment analytics, and Tableau/Power BI dashboard optimization across healthcare datasets.
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;">
+          <span style="font-size:10px;font-weight:600;padding:3px 10px;background:rgba(110,181,255,0.12);border:0.5px solid rgba(110,181,255,0.25);color:#6eb5ff;border-radius:980px;">⭐ Certificate of Appreciation — Power BI Delivery</span>
+        </div>
+        </div>
       </div>
     </div>
     <div class="skills-compact">
@@ -863,7 +917,9 @@ footer {
         <div class="sk-group-label">Methods</div>
         <div class="sk-pills">
           <span class="sk-pill">Predictive Modeling</span><span class="sk-pill">Cohort Analysis</span>
-          <span class="sk-pill">Statistical Testing</span><span class="sk-pill">Forecasting</span><span class="sk-pill">Segmentation</span>
+          <span class="sk-pill">Statistical Testing</span><span class="sk-pill">Forecasting</span>
+          <span style="width:100%;height:0;"></span>
+          <span class="sk-pill">Segmentation</span>
         </div>
       </div>
       <div>
@@ -871,7 +927,9 @@ footer {
         <div class="sk-pills">
           <span class="sk-pill">FinTech · Lending</span><span class="sk-pill">Collections</span>
           <span class="sk-pill">Workforce Planning</span><span class="sk-pill">Compliance</span>
-          <span class="sk-pill">CPG</span><span class="sk-pill">Healthcare</span>
+          <span class="sk-pill">CPG</span>
+          <span style="width:100%;height:0;"></span>
+          <span class="sk-pill">Healthcare</span>
         </div>
       </div>
     </div>
@@ -935,7 +993,7 @@ footer {
 <!-- FOOTER -->
 <footer>
   <span>Aniket Chavan · Analytics Portfolio</span>
-  <span>Seattle, WA · Open to Hybrid & Remote · © 2026</span>
+  <span>© 2026</span>
 </footer>
 
 <script>
@@ -1047,7 +1105,6 @@ function toggleAcc(id) {
     setTimeout(() => { if (projectsIntro) projectsIntro.classList.add('revealed'); }, 240);
     const pill = document.getElementById('labPill');
     setTimeout(() => { if (pill) pill.classList.add('revealed'); }, 360);
-    // Cards stagger in one by one after the intro
     highlightCards.forEach((card, i) => {
       setTimeout(() => card.classList.add('revealed'), 480 + i * 120);
     });
@@ -1070,6 +1127,22 @@ function toggleAcc(id) {
   }, { threshold: 0.12 });
 
   targets.forEach(el => revealObs.observe(el));
+
+  // On mobile — also observe career highlights cards via IntersectionObserver
+  // since revealProjectsEyebrow is skipped
+  if (window.innerWidth < 768) {
+    const mobileProjectEls = [projectsEyebrow, projectsH2, projectsIntro,
+      document.getElementById('labPill'), ...highlightCards].filter(Boolean);
+    const mobileObs = new IntersectionObserver(entries => {
+      entries.forEach((e, idx) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('revealed'), idx * 80);
+          mobileObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    mobileProjectEls.forEach(el => mobileObs.observe(el));
+  }
 })();
 
 // ── FADE-UP OBSERVER (impact strip + career highlights header) ──
@@ -1095,16 +1168,11 @@ function toggleAcc(id) {
 
   const isMobile = window.innerWidth < 768;
 
-  // Draw trend line proportionally
-  const trendPath = document.getElementById('impactTrendPath');
-  const totalLength = 1060;
-  function drawLine(p) {
-    trendPath.style.strokeDashoffset = totalLength * (1 - p);
-    trendPath.style.strokeDasharray = totalLength;
-  }
-
   // Reveal items based on progress 0→1
   const cells = strip.querySelectorAll('.impact-cell');
+  const dots = [1,2,3,4].map(i => document.getElementById('dot'+i));
+  const trackFill = document.getElementById('impactTrackFill');
+  const dotsEl = strip.querySelector('.impact-dots');
   function revealItems(p) {
     items.forEach((el, i) => {
       if (!el) return;
@@ -1117,15 +1185,29 @@ function toggleAcc(id) {
       if (p >= numThreshold) cell.classList.add('cell-visible');
       else cell.classList.remove('cell-visible');
     });
+    // Dots — activate as each metric reveals
+    const firstDotThreshold = 1 / (items.length + 1);
+    dots.forEach((dot, i) => {
+      if (!dot) return;
+      const t = (i * 2 + 1) / (items.length + 1);
+      if (p >= t) dot.classList.add('active');
+      else dot.classList.remove('active');
+    });
+    // Show progress bar only once first dot activates
+    if (dotsEl) {
+      if (p >= firstDotThreshold) dotsEl.classList.add('visible');
+      else dotsEl.classList.remove('visible');
+    }
+    // Track fill — grows with progress
+    if (trackFill) trackFill.style.width = (p * 100) + '%';
   }
 
   // Shared complete function — called by bypass, mobile init, and desktop completion
-  function completeSequence() {
-    drawLine(1);
+  function completeSequence(skipProjects) {
     revealItems(1);
     document.getElementById('home').classList.add('border-visible');
     document.getElementById('projects').classList.add('border-visible');
-    if (window.revealProjectsEyebrow) window.revealProjectsEyebrow();
+    if (!skipProjects && window.revealProjectsEyebrow) window.revealProjectsEyebrow();
     if (window.revealCtas) window.revealCtas();
   }
 
@@ -1134,12 +1216,12 @@ function toggleAcc(id) {
     // Mark fade-up strip visible immediately on mobile
     const stripEl = document.getElementById('impactStrip');
     if (stripEl) stripEl.classList.add('visible');
-    completeSequence();
+    // skipProjects=true — IntersectionObserver handles career highlights on scroll
+    completeSequence(true);
 
-    window.bypassMetrics = function() { completeSequence(); };
+    window.bypassMetrics = function() { completeSequence(true); };
 
     // Initial state — fully visible
-    drawLine(1);
     revealItems(1);
     return; // stop here — no desktop hijack code runs
   }
@@ -1194,7 +1276,6 @@ function toggleAcc(id) {
     const normalized = Math.min(Math.abs(e.deltaY), 120) / 120;
     const delta = e.deltaY > 0 ? normalized * 0.04 : -(normalized * 0.04);
     progress = Math.min(1, Math.max(0, progress + delta));
-    drawLine(progress);
     revealItems(progress);
     if (progress >= 1) {
       released = true;
@@ -1214,7 +1295,6 @@ function toggleAcc(id) {
   };
 
   // Initial state — hidden
-  drawLine(0);
   revealItems(0);
 })();
 
