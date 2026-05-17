@@ -156,10 +156,10 @@ nav {
   border-color: var(--apple-blue);
   transform: scale(1.25);
 }
-/* Line spans from center of dot1 to center of dot4 (12.5% → 87.5%) */
+/* Line spans full width, dots stay at column centers */
 .impact-track {
   position: absolute;
-  top: 50%; left: 12.5%; right: 12.5%;
+  top: 50%; left: 0; right: 0;
   height: 1.5px;
   transform: translateY(-50%);
   z-index: 1;
@@ -269,7 +269,7 @@ h2 em { font-style: italic; color: var(--apple-blue); font-family: 'DM Serif Dis
 .hl-right-pills { display: flex; gap: 5px; flex-wrap: wrap; }
 .hl-right-pill { font-size: 10px; font-weight: 500; padding: 3px 9px; background: var(--apple-bg); border: 0.5px solid var(--apple-border-light); color: var(--apple-secondary); border-radius: 6px; }
 .hl-right-summary { font-size: 12.5px; color: var(--apple-secondary); line-height: 1.7; flex: 1; }
-.hl-right-link { display: inline-block; font-size: 10px; font-weight: 500; padding: 4px 10px; font-style: italic; background: var(--apple-bg); border: 0.5px dashed var(--apple-border); color: var(--apple-tertiary); border-radius: 980px; cursor: default; margin-top: auto; width: fit-content; }
+.hl-right-link { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 500; padding: 4px 10px 4px 8px; font-style: normal; background: transparent; border: 1px dashed #854f0b; color: #854f0b; border-radius: 980px; cursor: default; margin-top: auto; width: fit-content; }
 .hl-desc { font-size: 14px; color: var(--apple-text); line-height: 1.75; margin-bottom: 12px; }
 .hl-bullets { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
 .hl-bullet { font-size: 12px; color: var(--apple-secondary); line-height: 1.5; font-style: italic; display: flex; gap: 8px; }
@@ -577,15 +577,17 @@ footer {
 
 <!-- CAREER HIGHLIGHTS -->
 <section id="projects">
-  <p class="section-eyebrow">Career Highlights</p>
-  <h2>Analytics that moved the <em>needle</em>.</h2>
-  <p class="section-intro">Each project below reflects actual career work — analytics that moved numbers and changed how leadership thought about the business.</p>
-  <div id="labPill" class="scroll-reveal" style="margin-bottom:28px;">
-    <div style="display:inline-flex;align-items:center;gap:7px;background:var(--apple-blue-light);border:0.5px solid #b5d4f4;border-radius:980px;padding:5px 14px 5px 10px;white-space:nowrap;">
-      <span style="font-size:12px;">⚗</span>
-      <span style="font-size:11px;font-weight:500;color:var(--apple-blue);">Each project has a live lab · Same analysis · Public dataset · Live AI tools</span>
+  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+    <span class="section-eyebrow" style="margin-bottom:0;">Career Highlights</span>
+    <div id="labPill" class="scroll-reveal" style="display:flex;align-items:center;">
+      <div style="display:inline-flex;align-items:center;gap:5px;border:1px dashed #854f0b;border-radius:980px;padding:2px 9px 2px 7px;">
+        <i class="ti ti-flask" aria-hidden="true" style="font-size:11px;color:#854f0b;"></i>
+        <span style="font-size:10px;font-weight:500;color:#854f0b;">and a corresponding live lab — same analysis · different dataset</span>
+      </div>
     </div>
   </div>
+  <h2>Analytics that moved the <em>needle</em>.</h2>
+  <p class="section-intro">Each project below reflects actual career work — analytics that moved numbers and changed how leadership thought about the business.</p>
 
   <div class="highlights-list">
 
@@ -619,7 +621,7 @@ footer {
               </div>
             </div>
             <p class="hl-right-summary">Mortgage delinquency waterfall decomposition for a leading real estate platform — same methodology applied to HMDA public data. Paired with a Custom GPT trained on the findings.</p>
-            <span class="hl-right-link">Coming soon ↗</span>
+            <span class="hl-right-link"><i class="ti ti-flask" aria-hidden="true" style="font-size:11px;"></i>Coming soon ↗</span>
           </div>
         </div>
       </div>
@@ -655,7 +657,7 @@ footer {
               </div>
             </div>
             <p class="hl-right-summary">Multi-product BNPL borrower segmentation for a leading buy-now-pay-later lender — concurrent obligations analysis using LendingClub public data. Paired with a Gemini Gem configured as a Collections Analyst AI.</p>
-            <span class="hl-right-link">Coming soon ↗</span>
+            <span class="hl-right-link"><i class="ti ti-flask" aria-hidden="true" style="font-size:11px;"></i>Coming soon ↗</span>
           </div>
         </div>
       </div>
@@ -695,7 +697,7 @@ footer {
               </div>
             </div>
             <p class="hl-right-summary">3-tier Tableau dashboard architecture applied to a leading U.S. communications company — unified exec, manager, and agent views from a single pipeline. Paired with a Claude Skill for automated KPI dictionary generation.</p>
-            <span class="hl-right-link">Coming soon ↗</span>
+            <span class="hl-right-link"><i class="ti ti-flask" aria-hidden="true" style="font-size:11px;"></i>Coming soon ↗</span>
           </div>
         </div>
       </div>
@@ -731,7 +733,7 @@ footer {
               </div>
             </div>
             <p class="hl-right-summary">Customer churn intervention analytics for a leading U.S. telecommunications company — speech analytics to NPS signal mapping, agent coaching effectiveness, and retention gamification using telecom churn data.</p>
-            <span class="hl-right-link">Coming soon ↗</span>
+            <span class="hl-right-link"><i class="ti ti-flask" aria-hidden="true" style="font-size:11px;"></i>Coming soon ↗</span>
           </div>
         </div>
       </div>
@@ -771,7 +773,7 @@ footer {
               </div>
             </div>
             <p class="hl-right-summary">Interactive Erlang-C staffing calculator built as a Claude Artifact — input volume, AHT, and SLA targets, output FTE requirements by shift and scenario. Paired with a Gemini Live walkthrough of the model logic.</p>
-            <span class="hl-right-link">Coming soon ↗</span>
+            <span class="hl-right-link"><i class="ti ti-flask" aria-hidden="true" style="font-size:11px;"></i>Coming soon ↗</span>
           </div>
         </div>
       </div>
@@ -807,7 +809,7 @@ footer {
               </div>
             </div>
             <p class="hl-right-summary">Hook Model applied to travel rebooking behavior for a leading online travel platform — segment analysis using public travel data. Audio deep-dive generated via Gemini NotebookLM for hiring managers to listen on commute.</p>
-            <span class="hl-right-link">Coming soon ↗</span>
+            <span class="hl-right-link"><i class="ti ti-flask" aria-hidden="true" style="font-size:11px;"></i>Coming soon ↗</span>
           </div>
         </div>
       </div>
@@ -847,7 +849,7 @@ footer {
               </div>
             </div>
             <p class="hl-right-summary">Interactive incentive rank calculator built as a Claude Artifact — input agent performance data, toggle the 70/30 weighting, and see rank shifts live. Visitors interact with the actual model logic.</p>
-            <span class="hl-right-link">Coming soon ↗</span>
+            <span class="hl-right-link"><i class="ti ti-flask" aria-hidden="true" style="font-size:11px;"></i>Coming soon ↗</span>
           </div>
         </div>
       </div>
